@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ChannelMapper">
+	<resultMap id="BaseResultMap" type="com.card.inteface.entity.Channel">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="channel_name" property="channelName" jdbcType="VARCHAR" />
+		<result column="contacts_name" property="contactsName" jdbcType="VARCHAR" />
+		<result column="code" property="code" jdbcType="VARCHAR" />
+		<result column="contacts_mobile" property="contactsMobile" jdbcType="VARCHAR" />
+		<result column="extension_url" property="extensionUrl" jdbcType="VARCHAR" />
+		<result column="qr_code_url" property="qrCodeUrl" jdbcType="VARCHAR" />
+		<result column="create_user_id" property="createUserId" jdbcType="INTEGER" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_user_id" property="updateUserId" jdbcType="INTEGER" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		id,
+		channel_name,
+		contacts_name,
+		code,
+		contacts_mobile,
+		extension_url,
+		qr_code_url,
+		create_user_id,
+		create_time,
+		update_user_id,
+		update_time
+	</sql>
+	
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from channel
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+		id = #{id,jdbcType=INTEGER}
+		</trim>
+	</select>
+	
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from channel
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+		id = #{id,jdbcType=INTEGER}
+		</trim>
+	</delete>
+	
+	<insert id="insertSelective" parameterType="com.card.inteface.entity.Channel">
+		insert into channel
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="null != id">
+				id,
+			</if>
+			<if test="null != channelName">
+				channel_name,
+			</if>
+			<if test="null != contactsName">
+				contacts_name,
+			</if>
+			<if test="null != code">
+				code,
+			</if>
+			<if test="null != contactsMobile">
+				contacts_mobile,
+			</if>
+			<if test="null != extensionUrl">
+				extension_url,
+			</if>
+			<if test="null != qrCodeUrl">
+				qr_code_url,
+			</if>
+			<if test="null != createUserId">
+				create_user_id,
+			</if>
+			<if test="null != createTime">
+				create_time,
+			</if>
+			<if test="null != updateUserId">
+				update_user_id,
+			</if>
+			<if test="null != updateTime">
+				update_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="null != id">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="null != channelName">
+				#{channelName,jdbcType=VARCHAR},
+			</if>
+			<if test="null != contactsName">
+				#{contactsName,jdbcType=VARCHAR},
+			</if>
+			<if test="null != code">
+				#{code,jdbcType=VARCHAR},
+			</if>
+			<if test="null != contactsMobile">
+				#{contactsMobile,jdbcType=VARCHAR},
+			</if>
+			<if test="null != extensionUrl">
+				#{extensionUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="null != qrCodeUrl">
+				#{qrCodeUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="null != createUserId">
+				#{createUserId,jdbcType=INTEGER},
+			</if>
+			<if test="null != createTime">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="null != updateUserId">
+				#{updateUserId,jdbcType=INTEGER},
+			</if>
+			<if test="null != updateTime">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="com.card.inteface.entity.Channel">
+		update channel
+		<set>
+			<if test="null != id">
+				id = #{id,jdbcType=INTEGER},
+			</if>
+			<if test="null != channelName">
+				channel_name = #{channelName,jdbcType=VARCHAR},
+			</if>
+			<if test="null != contactsName">
+				contacts_name = #{contactsName,jdbcType=VARCHAR},
+			</if>
+			<if test="null != code">
+				code = #{code,jdbcType=VARCHAR},
+			</if>
+			<if test="null != contactsMobile">
+				contacts_mobile = #{contactsMobile,jdbcType=VARCHAR},
+			</if>
+			<if test="null != extensionUrl">
+				extension_url = #{extensionUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="null != qrCodeUrl">
+				qr_code_url = #{qrCodeUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="null != createUserId">
+				create_user_id = #{createUserId,jdbcType=INTEGER},
+			</if>
+			<if test="null != createTime">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="null != updateUserId">
+				update_user_id = #{updateUserId,jdbcType=INTEGER},
+			</if>
+			<if test="null != updateTime">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+		id = #{id,jdbcType=INTEGER}
+		</trim>
+	</update>
+</mapper>

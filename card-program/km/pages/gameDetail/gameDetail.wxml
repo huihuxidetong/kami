@@ -1,0 +1,61 @@
+<view style='overflow-x: hidden;'>
+     <swiper indicator-dots="true" autoplay="true" circular="true" interval="2000" duration="500" indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#fff" style='height:400rpx'>
+    <block  wx:for="{{gameDetail.activityUmageUrl}}" wx:for-item="item" wx:key="*this">
+      <swiper-item >
+        <view >
+        <image src='{{imgDomain+item}}'class="gameimage"></image>
+        </view>  
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class="cardtitle cardmargin" style='margin-left:30rpx;margin-top:30rpx;font-size:34rpx;font-weight:bold'>{{gameDetail.activityName}}</view>
+  <view class="carddes">{{gameDetail.activityTimeStart}}-{{gameDetail.activityTimeEnd}} | {{gameDetail.activityPosition}}</view>
+  <view class='cutline'></view>
+  <view class='titletext'>活动描述</view>
+    <view style='margin:0 30rpx;'>
+       <rich-text nodes="{{gameDetail.notic}}" style='color:#3b445b;font-size:28rpx;'></rich-text>
+    </view>
+   
+  <view class='cutline'></view>
+  <view class='titletext'>活动须知</view>
+  <view style='background:#f9fbfe;margin:0 30rpx 40rpx 30rpx;padding:20rpx' >
+    <text style='color:#959baa;font-size:26rpx;display:block;word-break:break-all;' wx:for="{{gameDetail.describe}}" wx:for-item="item">{{item}};</text>  
+  </view>
+  <view style='height:20rpx;background: #f9fbfe;width:100%;'></view>
+  <view style='display:flex;flex-direction:raw;justify-content:space-between;align-items:center;'  wx:if="{{gameDetail.activityCreditCardVoList!=null&&gameDetail.activityCreditCardVoList.length>0}}">
+  <text class='titletext' style='flex:1'>相关信用卡</text>
+  <view style='display:flex;align-items:center;margin-right:30rpx'>
+    <text bindtap='goMoreProduct' style=" font-size:26rpx;color:#959baa" bindtap='moreCard'>更多 </text>
+    <image src="../../images/icon/come_right.png" style="width:12rpx;height:22rpx;margin-left:8rpx"></image>
+    </view>
+  </view>
+  <view style='display:flex;flex-direction:raw;align-items:center;padding:0 30rpx 40rpx 30rpx;margin-bottom:100rpx'>
+    <view style='display:flex;flex-direction:column;justify-content:space-between;align-items:center;width:33%' wx:for="{{gameDetail.activityCreditCardVoList}}" wx:for-item="item" bindtap='goCardDetail' data-id='{{item.id}}'>
+    <image style="width:160rpx;height:100rpx;margin-bottom:30rpx"  src='{{imgDomain+item.cardLogo}}'>
+    </image>
+    <text style='font-size:26rpx;color:#959baa;margin-bottom:15rpx'>{{item.bankName}}{{item.cardName}}</text>
+      <text class='mylabel'>申请办卡</text>
+    </view>
+  </view>
+  </view>
+  <!-- 不能参与活动 -->
+  <view style='position:fixed;bottom:0;display:flex;flex-direction:row;height:98rpx;width:100%' wx:if="{{gameDetail.isHasSignUp==0}}">
+    <button class='aboutButton' open-type='getUserInfo' bindgetuserinfo="getUserInfo" data-buttonindex='1'>
+    <image style="width:30rpx;height:30rpx;margin-top:9rpx"  src='../../images/icon/add_follow.png'></image>
+    <view style='font-size:24rpx;color:#3b445b;margin-bottom:-9rpx'>{{concernText}}</view>
+    </button>
+    <button style='flex:1;background:#ff5600;font-size:32rpx;color:#fff;text-align:center;line-height:98rpx;border-radius:0;' open-type='share'>分享</button>
+  </view>
+   <!-- 能参与活动 -->
+    <view style='position:fixed;bottom:0;display:flex;flex-direction:row;height:98rpx;width:100%' wx:if="{{gameDetail.isHasSignUp==1}}">
+    <button class='aboutButton' open-type='getUserInfo' bindgetuserinfo="getUserInfo" data-buttonindex='1'>
+    <image style="width:30rpx;height:30rpx;margin-bottom:-4rpx"  src='../../images/icon/add_follow.png'></image>
+    <text style='font-size:24rpx;color:#3b445b;margin-bottom:-9rpx'>{{concernText}}</text>
+    </button>
+     <button class='aboutButton' open-type='share'>
+    <image style="width:30rpx;height:30rpx;margin-bottom:-4rpx"  src='../../images/icon/share.png'></image>
+    <text style='font-size:24rpx;color:#3b445b;margin-bottom:-9rpx'>分享</text>
+    </button>
+    <button style='flex:1;background:#ff5600;font-size:32rpx;color:#fff;text-align:center;line-height:98rpx; border:none;border-radius:0;' open-type='getUserInfo' bindgetuserinfo="getUserInfo" data-buttonindex='2'>参与活动</button>
+  </view>
+    <image hidden="{{goIndex}}" src="../../images/icon/go_index.png" style="width:50px;height:44px;position:fixed;bottom:150px;right:0;z-index:99" bindtap='goIndex' />

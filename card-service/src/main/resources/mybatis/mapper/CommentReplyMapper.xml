@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="CommentReplyMapper">
+	<resultMap id="BaseResultMap" type="com.card.inteface.entity.CommentReply">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="comment_id" property="commentId" jdbcType="INTEGER" />
+		<result column="reply_type" property="replyType" jdbcType="INTEGER" />
+		<result column="reply_id" property="replyId" jdbcType="INTEGER" />
+		<result column="content" property="content" jdbcType="VARCHAR" />
+		<result column="to_uid" property="toUid" jdbcType="INTEGER" />
+		<result column="to_nickname" property="toNickname" jdbcType="VARCHAR" />
+		<result column="from_uid" property="fromUid" jdbcType="INTEGER" />
+		<result column="from_thumb_img" property="fromThumbImg" jdbcType="VARCHAR" />
+		<result column="from_nickname" property="fromNickname" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="INTEGER" />
+		<result column="is_read" property="isRead" jdbcType="INTEGER" />
+	</resultMap>
+
+	<resultMap id="CommentReplyVo" type="com.card.inteface.vo.CommentReplyVo">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="comment_id" property="commentId" jdbcType="INTEGER" />
+		<result column="reply_type" property="replyType" jdbcType="INTEGER" />
+		<result column="reply_id" property="replyId" jdbcType="INTEGER" />
+		<result column="content" property="content" jdbcType="VARCHAR" />
+		<result column="to_uid" property="toUid" jdbcType="INTEGER" />
+		<result column="to_nickname" property="toNickname" jdbcType="VARCHAR" />
+		<result column="from_uid" property="fromUid" jdbcType="INTEGER" />
+		<result column="from_thumb_img" property="fromThumbImg" jdbcType="VARCHAR" />
+		<result column="from_nickname" property="fromNickname" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="INTEGER" />
+		<result column="is_read" property="isRead" jdbcType="INTEGER" />
+		<result column="credit_card_id" property="creditCardId" jdbcType="INTEGER" />
+
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		id,
+		comment_id,
+		reply_type,
+		reply_id,
+		content,
+		to_uid,
+		to_nickname,
+		from_uid,
+		from_thumb_img,
+		from_nickname,
+		create_time,
+		is_read
+	</sql>
+	
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from comment_reply
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+		id = #{id,jdbcType=INTEGER}
+		</trim>
+	</select>
+	
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from comment_reply
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+		id = #{id,jdbcType=INTEGER}
+		</trim>
+	</delete>
+	
+	<insert id="insertSelective" parameterType="com.card.inteface.entity.CommentReply">
+		insert into comment_reply
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="null != id">
+				id,
+			</if>
+			<if test="null != commentId">
+				comment_id,
+			</if>
+			<if test="null != replyType">
+				reply_type,
+			</if>
+			<if test="null != replyId">
+				reply_id,
+			</if>
+			<if test="null != content">
+				content,
+			</if>
+			<if test="null != toUid">
+				to_uid,
+			</if>
+			<if test="null != toNickname">
+				to_nickname,
+			</if>
+			<if test="null != fromUid">
+				from_uid,
+			</if>
+			<if test="null != fromThumbImg">
+				from_thumb_img,
+			</if>
+			<if test="null != fromNickname">
+				from_nickname,
+			</if>
+			<if test="null != createTime">
+				create_time,
+			</if>
+			<if test="null != isRead">
+				is_read,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="null != id">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="null != commentId">
+				#{commentId,jdbcType=INTEGER},
+			</if>
+			<if test="null != replyType">
+				#{replyType,jdbcType=TINYINT UNSIGNED},
+			</if>
+			<if test="null != replyId">
+				#{replyId,jdbcType=INTEGER},
+			</if>
+			<if test="null != content">
+				#{content,jdbcType=VARCHAR},
+			</if>
+			<if test="null != toUid">
+				#{toUid,jdbcType=INTEGER},
+			</if>
+			<if test="null != toNickname">
+				#{toNickname,jdbcType=VARCHAR},
+			</if>
+			<if test="null != fromUid">
+				#{fromUid,jdbcType=INTEGER},
+			</if>
+			<if test="null != fromThumbImg">
+				#{fromThumbImg,jdbcType=VARCHAR},
+			</if>
+			<if test="null != fromNickname">
+				#{fromNickname,jdbcType=VARCHAR},
+			</if>
+			<if test="null != createTime">
+				#{createTime,jdbcType=INTEGER},
+			</if>
+			<if test="null != isRead">
+				#{isRead,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="com.card.inteface.entity.CommentReply">
+		update comment_reply
+		<set>
+			<if test="null != id">
+				id = #{id,jdbcType=INTEGER},
+			</if>
+			<if test="null != commentId">
+				comment_id = #{commentId,jdbcType=INTEGER},
+			</if>
+			<if test="null != replyType">
+				reply_type = #{replyType,jdbcType=TINYINT UNSIGNED},
+			</if>
+			<if test="null != replyId">
+				reply_id = #{replyId,jdbcType=INTEGER},
+			</if>
+			<if test="null != content">
+				content = #{content,jdbcType=VARCHAR},
+			</if>
+			<if test="null != toUid">
+				to_uid = #{toUid,jdbcType=INTEGER},
+			</if>
+			<if test="null != toNickname">
+				to_nickname = #{toNickname,jdbcType=VARCHAR},
+			</if>
+			<if test="null != fromUid">
+				from_uid = #{fromUid,jdbcType=INTEGER},
+			</if>
+			<if test="null != fromThumbImg">
+				from_thumb_img = #{fromThumbImg,jdbcType=VARCHAR},
+			</if>
+			<if test="null != fromNickname">
+				from_nickname = #{fromNickname,jdbcType=VARCHAR},
+			</if>
+			<if test="null != createTime">
+				create_time = #{createTime,jdbcType=INTEGER},
+			</if>
+			<if test="null != isRead">
+				is_read = #{isRead,jdbcType=INTEGER},
+			</if>
+		</set>
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+		id = #{id,jdbcType=INTEGER}
+		</trim>
+	</update>
+
+	<select id="findCommentReplyVoByCommnetId" parameterType="java.lang.Integer" resultMap="CommentReplyVo">
+		select
+		<include refid="Base_Column_List" />
+		from comment_reply
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			comment_id = #{commentId,jdbcType=INTEGER}
+		</trim>
+	</select>
+
+	<select id="findMyCommentReplyVoPage" parameterType="java.lang.Integer" resultMap="CommentReplyVo">
+		SELECT cr.*,c.object_id credit_card_id FROM comment_reply cr
+		LEFT JOIN `comment` c ON cr.comment_id = c.id
+		WHERE cr.to_uid= #{toUid}
+		ORDER BY cr.create_time DESC
+	</select>
+
+	<select id="updateCommentReply" parameterType="com.card.inteface.entity.CommentReply">
+		update comment_reply
+		set is_read = #{isRead,jdbcType=INTEGER}
+		where to_uid = #{toUid,jdbcType=INTEGER}
+		<if test="null != id">
+			and id = #{id,jdbcType=INTEGER}
+		</if>
+
+	</select>
+</mapper>

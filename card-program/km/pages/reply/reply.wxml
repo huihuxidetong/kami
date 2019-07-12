@@ -1,0 +1,12 @@
+<view style="background:#edeff2;height:1px"></view>
+<view  style="background:#fff;">
+  <form action="" >
+  	<view style="padding:0 30rpx;height: 500rpx;background:#fff;border-bottom:2rpx solid #edeff2">
+    <textarea class="weui-textarea" bindinput="textBlur" maxlength="200" placeholder="请输入评论内容" placeholder-class='holderText'>
+      <view class="number"><text>{{evaContent}}</text>/200</view>
+    </textarea>
+  </view>
+   <button class="commit" bindtap="listenButton" style="background:#ff6400;color:#ffffff;opacity:{{color}}" disabled='{{isDisable}}'>提交
+  </button>
+  </form>
+</view>

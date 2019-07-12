@@ -1,0 +1,3 @@
+.cardlist{
+   display:flex;flex-direction:raw;border-bottom:1px solid #eeeeee;padding:30rpx 0rpx;margin-left: 30rpx
+}

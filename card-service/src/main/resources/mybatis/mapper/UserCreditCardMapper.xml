@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="UserCreditCardMapper">
+	<resultMap id="BaseResultMap" type="com.card.inteface.entity.UserCreditCard">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="credit_card_holder" property="creditCardHolder" jdbcType="VARCHAR" />
+		<result column="credit_card_number" property="creditCardNumber" jdbcType="VARCHAR" />
+		<result column="card_issuing_bank" property="cardIssuingBank" jdbcType="INTEGER" />
+		<result column="card_issuing_bank_type" property="cardIssuingBankType" jdbcType="INTEGER" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<resultMap id="MyCreditCardInfoVo" type="com.card.inteface.vo.MyCreditCardInfoVo">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="card_logo" property="cardLogo" jdbcType="VARCHAR" />
+		<result column="bank_id" property="bankId" jdbcType="INTEGER" />
+		<result column="bank_name" property="bankName" jdbcType="VARCHAR" />
+		<result column="card_name" property="cardName" jdbcType="VARCHAR" />
+		<result column="bank_logo" property="bankLogo" jdbcType="VARCHAR" />
+		<result column="credit_card_number" property="creditCardNumber" jdbcType="VARCHAR" />
+
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id,
+		user_id,
+		credit_card_holder,
+		credit_card_number,
+		card_issuing_bank,
+		card_issuing_bank_type,
+		create_time
+	</sql>
+	
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from user_credit_card
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+		id = #{id,jdbcType=INTEGER}
+		</trim>
+	</select>
+	
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from user_credit_card
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+		id = #{id,jdbcType=INTEGER}
+		</trim>
+	</delete>
+	
+	<insert id="insertSelective" parameterType="com.card.inteface.entity.UserCreditCard">
+		insert into user_credit_card
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="null != id">
+				id,
+			</if>
+			<if test="null != userId">
+				user_id,
+			</if>
+			<if test="null != creditCardHolder">
+				credit_card_holder,
+			</if>
+			<if test="null != creditCardNumber">
+				credit_card_number,
+			</if>
+			<if test="null != cardIssuingBank">
+				card_issuing_bank,
+			</if>
+			<if test="null != cardIssuingBankType">
+				card_issuing_bank_type,
+			</if>
+			<if test="null != createTime">
+				create_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="null != id">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="null != userId">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="null != creditCardHolder">
+				#{creditCardHolder,jdbcType=VARCHAR},
+			</if>
+			<if test="null != creditCardNumber">
+				#{creditCardNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="null != cardIssuingBank">
+				#{cardIssuingBank,jdbcType=INTEGER},
+			</if>
+			<if test="null != cardIssuingBankType">
+				#{cardIssuingBankType,jdbcType=INTEGER},
+			</if>
+			<if test="null != createTime">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="com.card.inteface.entity.UserCreditCard">
+		update user_credit_card
+		<set>
+			<if test="null != id">
+				id = #{id,jdbcType=INTEGER},
+			</if>
+			<if test="null != userId">
+				user_id = #{userId,jdbcType=INTEGER},
+			</if>
+			<if test="null != creditCardHolder">
+				credit_card_holder = #{creditCardHolder,jdbcType=VARCHAR},
+			</if>
+			<if test="null != creditCardNumber">
+				credit_card_number = #{creditCardNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="null != cardIssuingBank">
+				card_issuing_bank = #{cardIssuingBank,jdbcType=INTEGER},
+			</if>
+			<if test="null != cardIssuingBankType">
+				card_issuing_bank_type = #{cardIssuingBankType,jdbcType=INTEGER},
+			</if>
+			<if test="null != createTime">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+		id = #{id,jdbcType=INTEGER}
+		</trim>
+	</update>
+
+	<select id="findUserCreditCardLCount" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+		SELECT COUNT(1) FROM user_credit_card ucc
+		WHERE ucc.user_id = #{userId}
+	</select>
+
+	<select id="findMyCreditCardList" resultMap="MyCreditCardInfoVo" parameterType="java.lang.Integer">
+		SELECT bcc.id,bcc.card_name,b.bank_logo,b.bank_name,b.id bank_id ,ucc.credit_card_number
+		FROM user_credit_card ucc
+		LEFT JOIN bank b ON ucc.card_issuing_bank = b.id
+		LEFT JOIN bank_credit_card bcc ON ucc.card_issuing_bank_type = bcc.id
+		WHERE ucc.user_id = #{userId}
+		ORDER BY ucc.create_time DESC
+	</select>
+
+</mapper>

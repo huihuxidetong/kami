@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+		http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+    
+    <description>Spring MVC Configuration</description>
+    
+    <!--&lt;!&ndash; 加载配置属性文件 &ndash;&gt;-->
+	<!--<context:property-placeholder ignore-unresolvable="true" location="classpath:system.properties" />-->
+	
+<!-- 	<context:component-scan base-package="com.dxm" />  -->
+	<!-- 使用Annotation自动注册Bean,只扫描@Controller -->
+	<context:component-scan base-package="com.card.api.controller"><!-- base-package 如果多个，用“,”分隔 -->
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+	<!-- 默认的注解映射的支持，org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping -->
+	<mvc:annotation-driven>
+        <mvc:message-converters register-defaults="true">
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" p:supportedMediaTypes="*/*" />
+        </mvc:message-converters>
+	</mvc:annotation-driven>
+	<!-- 定义视图文件解析 -->
+	<!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
+        <!--<property name="prefix" value="${web.view.prefix}"/>-->
+		<!--<property name="suffix" value="${web.view.suffix}"/>-->
+	<!--</bean>-->
+	<!---->
+	<!-- 对静态资源文件的访问， 将无法mapping到Controller的path交给default servlet handler处理 -->
+	<mvc:default-servlet-handler />
+	
+	<!-- 静态资源映射 -->
+    <!--<mvc:resources mapping="/static/**" location="/static/" cache-period="31536000"/>-->
+
+	
+	<!-- 控制层日志记录 -->
+  	<bean id="controlLog" class="com.card.api.common.intercept.ControlLog"></bean> <!--将日志类注入到bean中。-->
+    <aop:config>  
+	    <aop:aspect id="controlAop" ref="controlLog"><!--调用日志类-->  
+		    <aop:pointcut id="contlog" expression="execution(* com.card.api.controller..*.*(..))"/><!--配置在log包下所有的类在调用之前都会被拦截-->
+		    <aop:before pointcut-ref="contlog" method="before"/>
+		    <aop:after pointcut-ref="contlog" method="after"/>
+	    </aop:aspect>  
+    </aop:config>
+	
+</beans>

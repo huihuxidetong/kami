@@ -1,0 +1,39 @@
+<!--pages/card/card.wxml-->
+<view class="index-hot">
+<text class="hot-title" style='margin:30rpx'>按银行找卡</text>
+<view style='display:flex;align-items:center;margin-right:30rpx' bindtap='goBankList'>
+      <text bindtap='goMoreProduct' style=" font-size:26rpx;color:#959baa">更多 </text>
+      <image src="../../images/icon/come_right.png" style="width:12rpx;height:22rpx;margin-left:8rpx"></image>
+    </view>
+     </view>
+  <view style='display:flex;flex-direction:raw;justify-content:space-around;align-items:center;padding:10rpx 0rpx 40rpx 0rpx;border-bottom:1px solid #edeff2;margin: 0 30rpx 60rpx 30rpx;flex-wrap:wrap;'>
+    <view style='display:flex;flex-direction:column;align-items:center;' wx:for="{{bankList}}" bindtap='goCardList' data-id='{{item.id}}'>
+    <image style="width:50rpx;height:50rpx;margin-bottom:20rpx"  src='{{imgDomain+item.bankLogo}}'>
+    </image>
+    <text style='font-size:24rpx;color:#101319;'>{{item.bankName}}</text>
+    </view>
+  </view>
+  <view class="hot-title" style='margin:0rpx 30rpx 0rpx 30rpx;'>热门信用卡</view>
+    <view style='border-top:1px solid #edeff2;margin:30rpx' >
+    <view class="cardlist" wx:for="{{hotList}}" wx:for-item="item" wx:key="*this" bindtap='goCardDetail' data-id='{{item.id}}'>
+      <image class="cardimage" src='{{imgDomain+item.cardLogo}}'></image>
+      <view class="carddetail">
+        <text class="cardtitle gamemargin">{{item.bankName}}{{item.cardName}}</text>
+        <text class="carddes cardmargin">{{item.cardFeature}}</text>
+        <text class="carddes">已有<text style='color:#ff5600;'>{{item.creditCardApplyNumber}}</text>人办理</text>   
+      </view>
+    </view>
+  </view>
+<view class="hot-title" style='margin:30rpx 30rpx 0rpx 30rpx;'>全部信用卡</view>
+ <view style='border-top:1px solid #edeff2;margin:30rpx' >
+    <view class="cardlist" wx:for="{{allList}}" wx:for-item="item" wx:key="*this" bindtap='goCardDetail' data-id='{{item.id}}'>
+      <image class="cardimage" src='{{imgDomain+item.cardLogo}}'></image>
+      <view class="carddetail">
+        <text class="cardtitle gamemargin">{{item.bankName}}{{item.cardName}}</text>
+        <text class="carddes cardmargin">{{item.cardFeature}}</text>
+        <text class="carddes">已有<text style='color:#ff5600;'>{{item.cardLookNumber}}</text>人查看</text>   
+      </view>
+    </view>
+  </view>
+   <view class="loading" wx:if="{{searchLoading}}">加载中</view>
+    <view class="loading complete" wx:if="{{searchLoadingComplete}}">已加载全部</view>

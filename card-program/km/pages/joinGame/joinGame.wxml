@@ -1,0 +1,14 @@
+<view style="background:#edeff2;height:1px"></view>
+<view style='height:108rpx;display:flex;align-items:center;margin-left:30rpx;padding-right:30rpx;border-bottom:1px solid #edeff2'>
+  <text class='leftText' style='margin-right:80rpx'>参与人</text>
+  <input placeholder='请填写参与人姓名' class='rightInput' maxlength='10' placeholder-class='rightHolder' bindinput='iputname' style='flex:1'></input>
+</view>
+<view style='height:108rpx;display:flex;align-items:center;margin-left:30rpx;padding-right:30rpx;border-bottom:1px solid #edeff2'>
+  <text class='leftText' style='margin-right:50rpx'>联系电话</text>
+  <input placeholder='请填写参与人电话' class='rightInput' maxlength='11' placeholder-class='rightHolder' type='number' bindinput='iputphoneNo' style='flex:1'></input>
+</view>
+<view style='height:108rpx;display:flex;align-items:center;margin-left:30rpx;padding-right:30rpx;border-bottom:1px solid #edeff2'>
+  <text class='leftText' style='margin-right:50rpx'>信用卡号</text>
+  <input placeholder='请填写参与活动的信用卡号' class='rightInput' maxlength='19' placeholder-class='rightHolder' type='number' bindinput='iputcard' style='flex:1'></input>
+</view>
+<button class='next' bindtap='submit'>提交</button> 

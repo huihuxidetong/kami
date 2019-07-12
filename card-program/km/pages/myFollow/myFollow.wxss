@@ -1,0 +1,30 @@
+/*切换页面标题*/
+
+.unselected {
+color:#959baa;
+text-align: center;
+font-size: 30rpx;
+padding-bottom: 16rpx
+}
+
+
+.selected {
+color:#101319;
+text-align: center;
+font-weight:bold;
+font-size: 30rpx;
+padding-bottom: 16rpx;
+border-bottom: 6rpx solid #ff5600
+}
+/*隐藏scroll-view滚动条*/
+::-webkit-scrollbar{
+width: 0;
+height: 0;
+color: transparent;
+}
+.cardlist{
+   display:flex;flex-direction:raw;margin-top:20rpx;padding:30rpx;background:#fff
+}
+.gameimage{
+ height:260rpx;margin-bottom: 20rpx;width:100%
+}

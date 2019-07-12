@@ -1,0 +1,7 @@
+ <view style='display:flex;flex-direction:raw;justify-content:space-around;align-items:center;padding:10rpx 0rpx 40rpx 0rpx;margin: 0 30rpx 60rpx 30rpx;flex-wrap:wrap;'>
+    <view style='display:flex;flex-direction:column;align-items:center;width:25%;margin-bottom:60rpx' wx:for="{{bankList}}" bindtap='goCardList' data-id='{{item.id}}'>
+    <image style="width:50rpx;height:50rpx;margin-bottom:20rpx"  src='{{imgDomain+item.bankLogo}}'>
+    </image>
+    <text style='font-size:24rpx;color:#101319;'>{{item.bankName}}</text>
+    </view>
+  </view>

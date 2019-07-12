@@ -1,0 +1,38 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo
+       http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <dubbo:application name="card-service-impl" owner="zzh" organization="com.card"/>
+
+    <dubbo:registry protocol="zookeeper" address="${dubbo.registry.address}" />
+
+    <dubbo:protocol name="dubbo" serialization="kryo" port="20884"/>
+
+    <!--<dubbo:monitor protocol="registry" />-->
+
+
+    <dubbo:consumer timeout="1000000"/>
+
+    <dubbo:provider timeout="1000000"/>
+
+    <dubbo:reference id ="userService" interface ="com.card.inteface.service.UserService" protocol="dubbo" version="1.0"/>
+    <dubbo:reference id ="creditCardInfoService" interface ="com.card.inteface.service.CreditCardInfoService" protocol="dubbo" version="1.0"/>
+    <dubbo:reference id ="bankService" interface ="com.card.inteface.service.BankService" protocol="dubbo" version="1.0"/>
+    <dubbo:reference id ="activityService" interface ="com.card.inteface.service.ActivityService" protocol="dubbo" version="1.0"/>
+    <dubbo:reference id ="bannerService" interface ="com.card.inteface.service.BannerService" protocol="dubbo" version="1.0"/>
+    <dubbo:reference id ="activityApplyService" interface ="com.card.inteface.service.ActivityApplyService" protocol="dubbo" version="1.0"/>
+    <dubbo:reference id ="commentService" interface ="com.card.inteface.service.CommentService" protocol="dubbo" version="1.0"/>
+    <dubbo:reference id ="commentReplyService" interface ="com.card.inteface.service.CommentReplyService" protocol="dubbo" version="1.0"/>
+    <dubbo:reference id ="userCreditCardService" interface ="com.card.inteface.service.UserCreditCardService" protocol="dubbo" version="1.0"/>
+    <dubbo:reference id ="creditCardQuestionService" interface ="com.card.inteface.service.CreditCardQuestionService" protocol="dubbo" version="1.0"/>
+    <dubbo:reference id ="creditCardConcernService" interface ="com.card.inteface.service.CreditCardConcernService" protocol="dubbo" version="1.0"/>
+    <dubbo:reference id ="creditCardCostService" interface ="com.card.inteface.service.CreditCardCostService" protocol="dubbo" version="1.0"/>
+    <dubbo:reference id ="bankCreditCardService" interface ="com.card.inteface.service.BankCreditCardService" protocol="dubbo" version="1.0"/>
+    <dubbo:reference id ="userConcernBasicService" interface ="com.card.inteface.service.UserConcernBasicService" protocol="dubbo" version="1.0"/>
+    <dubbo:reference id ="channelDataService" interface ="com.card.inteface.service.ChannelDataService" protocol="dubbo" version="1.0"/>
+    <dubbo:reference id ="creditCardApplyDataService" interface ="com.card.inteface.service.CreditCardApplyDataService" protocol="dubbo" version="1.0"/>
+</beans>

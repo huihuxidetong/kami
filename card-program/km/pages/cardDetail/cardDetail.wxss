@@ -1,0 +1,82 @@
+.gameimage{
+  width:100%;height:260rpx;margin-bottom: 20rpx
+}
+.applyButton{
+ flex:1;background:#ff5600;font-size:32rpx;color:#fff;text-align:center;line-height:98rpx;border:none;border-radius: 0; 
+}
+.applyButton::after{
+border: none;border-radius: 0; 
+}
+.aboutButton{
+width:166rpx;display:flex;flex-direction:column;background:#fff;justify-content:center;align-items:center; border:none;border-radius:0;border-top:1px solid #edeff2;line-height: 49rpx
+}
+.aboutButton::after{
+border: none;border-radius:0; 
+}
+.concernButton{
+font-size:30rpx;color:#ff5600;display:flex;align-items:center;border:none;border-radius:0;background:none;
+}
+.concernButton::after{
+border: none;border-radius:0; 
+}
+
+.nameText{
+  color: #3b445b;
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-bottom: 15rpx
+}
+.timeText{
+  color: #959baa;
+   font-size: 24rpx;
+}
+.messageContent{
+ display: block;
+ color: #959baa;
+ font-size: 24rpx;
+ background: #f9fbfe;
+ margin-left: 130rpx;
+ margin-right: 30rpx;
+ padding:0rpx 16rpx ;
+ text-align: left;
+ line-height: 40rpx;
+ border: none;border-radius:0; 
+}
+.messageContent::after{
+border: none;border-radius:0; 
+}
+.clickContent{
+ display: block;
+ color: #959baa;
+ font-size: 24rpx;
+ background: #eff2f6;
+ margin-left: 130rpx;
+ margin-right: 30rpx;
+ padding:0rpx 16rpx ;
+ line-height: 40rpx;
+}
+.replyButton{
+font-size:26rpx;color:#1f4799;display:flex;align-items:center;border: none;border-radius:0;background: none
+}
+.replyButton::after{
+border: none;border-radius:0; 
+}
+.processText{
+    height: 36rpx;
+    line-height: 36rpx;
+    width: 36rpx;
+    border-radius: 50rpx;
+    background: #ff5600;
+    display: inline-block;
+    font-size:20rpx;color:#fff;
+    text-align: center;
+    margin-bottom: 20rpx
+}
+.hot-title{
+  display:inline-block;
+  font-size:34rpx;
+  text-align:left;
+  color:#101319;
+  font-weight:bold;
+  margin:30rpx
+}

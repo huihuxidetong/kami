@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="UserMapper">
+	<resultMap id="BaseResultMap" type="com.card.inteface.entity.User">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="open_id" property="openId" jdbcType="VARCHAR" />
+		<result column="user_integral" property="userIntegral" jdbcType="INTEGER" />
+		<result column="user_portrait" property="userPortrait" jdbcType="VARCHAR" />
+		<result column="user_choose_lable" property="userChooseLable" jdbcType="VARCHAR" />
+		<result column="user_custom_lable" property="userCustomLable" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_user_id" property="updateUserId" jdbcType="INTEGER" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="channel_code" property="channelCode" jdbcType="VARCHAR" />
+		<result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		id,
+		open_id,
+		user_integral,
+		user_portrait,
+		user_choose_lable,
+		user_custom_lable,
+		create_time,
+		update_user_id,
+		update_time,
+		channel_code,
+		nick_name
+	</sql>
+	
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from user
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+		id = #{id,jdbcType=INTEGER}
+		</trim>
+	</select>
+	
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from user
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+		id = #{id,jdbcType=INTEGER}
+		</trim>
+	</delete>
+	
+	<insert id="insertSelective" parameterType="com.card.inteface.entity.User">
+		<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+			SELECT LAST_INSERT_ID() AS id
+		</selectKey>
+		insert into user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="null != id">
+				id,
+			</if>
+			<if test="null != openId">
+				open_id,
+			</if>
+			<if test="null != userIntegral">
+				user_integral,
+			</if>
+			<if test="null != userPortrait">
+				user_portrait,
+			</if>
+			<if test="null != userChooseLable">
+				user_choose_lable,
+			</if>
+			<if test="null != userCustomLable">
+				user_custom_lable,
+			</if>
+			<if test="null != createTime">
+				create_time,
+			</if>
+			<if test="null != updateUserId">
+				update_user_id,
+			</if>
+			<if test="null != updateTime">
+				update_time,
+			</if>
+			<if test="null != channelCode">
+				channel_code,
+			</if>
+			<if test="null != nickName">
+				nick_name,
+			</if>
+
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="null != id">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="null != openId">
+				#{openId,jdbcType=VARCHAR},
+			</if>
+			<if test="null != userIntegral">
+				#{userIntegral,jdbcType=INTEGER},
+			</if>
+			<if test="null != userPortrait">
+				#{userPortrait,jdbcType=VARCHAR},
+			</if>
+			<if test="null != userChooseLable">
+				#{userChooseLable,jdbcType=VARCHAR},
+			</if>
+			<if test="null != userCustomLable">
+				#{userCustomLable,jdbcType=VARCHAR},
+			</if>
+			<if test="null != createTime">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="null != updateUserId">
+				#{updateUserId,jdbcType=INTEGER},
+			</if>
+			<if test="null != updateTime">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="null != channelCode">
+				#{channelCode,jdbcType=VARCHAR},
+			</if>
+			<if test="null != nickName">
+				#{nickName,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="com.card.inteface.entity.User">
+		update user
+		<set>
+			<if test="null != id">
+				id = #{id,jdbcType=INTEGER},
+			</if>
+			<if test="null != openId">
+				open_id = #{openId,jdbcType=VARCHAR},
+			</if>
+			<if test="null != userIntegral">
+				user_integral = #{userIntegral,jdbcType=INTEGER},
+			</if>
+			<if test="null != userPortrait">
+				user_portrait = #{userPortrait,jdbcType=VARCHAR},
+			</if>
+			<if test="null != userChooseLable">
+				user_choose_lable = #{userChooseLable,jdbcType=VARCHAR},
+			</if>
+			<if test="null != userCustomLable">
+				user_custom_lable = #{userCustomLable,jdbcType=VARCHAR},
+			</if>
+			<if test="null != createTime">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="null != updateUserId">
+				update_user_id = #{updateUserId,jdbcType=INTEGER},
+			</if>
+			<if test="null != updateTime">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="null != channelCode">
+				channel_code = #{channelCode,jdbcType=VARCHAR},
+			</if>
+			<if test="null != nickName">
+				nick_name = #{nickName,jdbcType=VARCHAR},
+			</if>
+		</set>
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+		id = #{id,jdbcType=INTEGER}
+		</trim>
+	</update>
+
+	<select id="findUserByOpenId" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from user
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			open_id = #{openId}
+		</trim>
+	</select>
+
+	<select id="findUserByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from user
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			id = #{id}
+		</trim>
+	</select>
+</mapper>

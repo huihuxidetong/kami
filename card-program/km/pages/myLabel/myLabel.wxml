@@ -1,0 +1,30 @@
+<view style='padding:30rpx 0 40rpx 0;margin:0 30rpx;border-bottom:1px solid #edeff2'>
+  <view style="font-size:40rpx;color:#101319;margin-bottom:40rpx;font-weight:bold">已选标签<text style="font-size:24rpx;color:#959baa;margin-left:25rpx">(最多选择5个)</text></view>
+  <view style='display:flex;flex-direction:row;align-items:center;flex-wrap:wrap' wx:if="{{label!=null&&label.length>0}}">
+    <text wx:for="{{label}}" wx:for-item="item" wx:for-index="index" wx:key="*this" class='label' data-allindex='{{item.index}}'data-myindex="{{index}}" bindtap='chooseCancle' data-content="{{item.userCustomLableName}}">{{item.userCustomLableName}}</text>
+  </view>
+</view>
+<view style='padding:40rpx 0;margin:0 30rpx;border-bottom:1px solid #edeff2'>
+  <view style="font-size:40rpx;color:#101319;margin-bottom:40rpx;font-weight:bold">全部标签</view>
+  <view style='display:flex;flex-direction:row;align-items:center;flex-wrap:wrap'>
+    <text wx:for="{{allLabel}}" wx:for-item="item" wx:for-index="index" wx:key="*this" class="{{item.isChooseLable==1?'label':'unselectedLabel'}}" bindtap='chooseLable' data-content="{{item.userCustomLableName}}" data-ischoose="{{item.isChooseLable}}" data-index="{{index}}">{{item.userCustomLableName}}</text>
+  </view>
+</view>
+<view style='display:flex;justify-content: center;' bindtap='showModal'>
+  <view style='margin-top:80rpx;height:88rpx;width:430rpx;border:1px solid #edeff2;border-radius:44rpx;display:flex;align-items:center;justify-content: center;'>
+    <image style='height:36rpx;width:36rpx;margin-right:16rpx' src='../../images/icon/add.png'></image>
+    <text style='font-size:32rpx;color:#101319;'>添加自定义标签</text>
+  </view>
+</view>
+
+	<view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" hidden="{{isshowadd}}"></view>
+	<view class="modal-dialog" hidden="{{isshowadd}}">
+	    <view class="modal-title">添加自定义标签</view>
+	    <view style='background:#f9fbfe;border-radius:10rpx;margin:50rpx 30rpx 60rpx 30rpx;padding-left:35rpx;height:88rpx;display:flex;align-items:center;'>
+      <input placeholder='输入标签名称' maxlength='10' class='rightInput' placeholder-class='rightHolder' bindinput='inputmylable' value='{{labelContent}}'></input>
+      </view>
+	    <view class="modal-footer">
+	      <text class="btncancel" bindtap="hideModal" data-status="cancel">取消</text>
+	      <text class="btnconfirm" bindtap="addmyLabel">确定</text>
+	    </view>
+	</view>

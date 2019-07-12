@@ -1,0 +1,40 @@
+
+.rightInput{
+color:#101319;font-size: 30rpx;display: inline-block
+}
+.rightHolder{
+  color:#CED3E0;font-size:30rpx;display: inline-block
+}
+.next{
+  border-radius: 2rem;
+  background: #ff5600;
+  height: 88rpx;
+  line-height:88rpx;
+  color: #fff;
+  font-size:32rpx;
+  margin:60rpx 30rpx;
+  
+}
+.picker-view {
+  width: 100%;
+  display: flex;
+  z-index:2000;
+  background-color: #fff;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 0rpx;
+  height: 450rpx;
+}
+.picker-item {
+  line-height: 78rpx;
+  height:78rpx;
+  margin-left: 5rpx;
+  margin-right: 5rpx;
+  font-size:40rpx;
+  text-align: center;
+}
+.picker-btn{height:70rpx ;width:100%;line-height:70rpx;border-bottom:1px solid #ececec;}
+.cancelBtn{font-size:32rpx;color:#666;margin-left:30rpx}
+.sureBtn{float:right;font-size:32rpx;color:#02bb00;margin-right:30rpx;}

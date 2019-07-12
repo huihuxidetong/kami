@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ChannelMapper">
+	
+	<!--表名 -->
+	<sql id="tableName">
+		CHANNEL
+	</sql>
+	
+	<!-- 字段 -->
+	<sql id="Field">
+		id,
+		channel_name,
+		contacts_name,
+		code,
+		contacts_mobile,
+		extension_url,
+		qr_code_url,
+		create_user_id,
+		create_time,
+		update_user_id,
+		update_time
+	</sql>
+	
+	<!-- 字段值 -->
+	<sql id="FieldValue">
+		#{id},
+		#{channel_name},
+		#{contacts_name},
+		#{code},
+		#{contacts_mobile},
+		#{extension_url},
+		#{qr_code_url},
+		#{create_user_id},
+		#{create_time},
+		#{update_user_id},
+		#{update_time}
+	</sql>
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into
+		<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+			SELECT LAST_INSERT_ID() AS id
+		</selectKey>
+		<include refid="tableName"></include>
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="id != null and id != ''" >
+				id,
+			</if>
+			<if test="channel_name != null and channel_name != ''" >
+				channel_name,
+			</if>
+			<if test="contacts_name != null and contacts_name != ''" >
+				contacts_name,
+			</if>
+			<if test="code != null and code != ''" >
+				code,
+			</if>
+			<if test="contacts_mobile != null and contacts_mobile != ''" >
+				contacts_mobile,
+			</if>
+			<if test="extension_url != null and extension_url != ''" >
+				extension_url,
+			</if>
+			<if test="qr_code_url != null and qr_code_url != ''" >
+				qr_code_url,
+			</if>
+			<if test="create_user_id != null and create_user_id != ''" >
+				create_user_id,
+			</if>
+			<if test="create_time != null and create_time != ''" >
+				create_time,
+			</if>
+			<if test="update_user_id != null and update_user_id != ''" >
+				update_user_id,
+			</if>
+			<if test="update_time != null and update_time != ''" >
+				update_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="id != null and id != ''" >
+				#{id},
+			</if>
+			<if test="channel_name != null and channel_name != ''" >
+				#{channel_name},
+			</if>
+			<if test="contacts_name != null and contacts_name != ''" >
+				#{contacts_name},
+			</if>
+			<if test="code != null and code != ''" >
+				#{code},
+			</if>
+			<if test="contacts_mobile != null and contacts_mobile != ''">
+				#{contacts_mobile},
+			</if>
+			<if test="extension_url != null and extension_url != ''" >
+				#{extension_url},
+			</if>
+			<if test="qr_code_url != null and qr_code_url != ''" >
+				#{qr_code_url},
+			</if>
+			<if test="create_user_id != null and create_user_id != ''" >
+				#{create_user_id},
+			</if>
+			<if test="create_time != null and create_time != ''" >
+				#{create_time},
+			</if>
+			<if test="update_user_id != null and update_user_id != ''" >
+				#{update_user_id},
+			</if>
+			<if test="update_time != null and update_time != ''" >
+				#{update_time},
+			</if>
+		</trim>
+	</insert>
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			id=#{id}
+	</delete>
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update
+		<include refid="tableName"></include>
+		set
+		<trim  suffixOverrides="," >
+			<if test="channel_name != null and channel_name != ''" >
+				channel_name = #{channel_name},
+			</if>
+			<if test="contacts_name != null and contacts_name != ''" >
+				contacts_name = #{contacts_name},
+			</if>
+			<if test="code != null and code != ''" >
+				code = #{code},
+			</if>
+			<if test="contacts_mobile != null and contacts_mobile != ''" >
+				contacts_mobile = #{contacts_mobile},
+			</if>
+			<if test="extension_url != null and extension_url != ''" >
+				extension_url = #{extension_url},
+			</if>
+			<if test="qr_code_url != null and qr_code_url != ''" >
+				qr_code_url = #{qr_code_url},
+			</if>
+			<if test="create_user_id != null and create_user_id != ''" >
+				create_user_id = #{create_user_id},
+			</if>
+			<if test="create_time != null and create_time != ''" >
+				create_time = #{create_time},
+			</if>
+			<if test="update_user_id != null and update_user_id != ''" >
+				update_user_id = #{update_user_id},
+			</if>
+			<if test="update_time != null and update_time != ''" >
+				update_time = #{update_time},
+			</if>
+		</trim>
+		where
+		id=#{id}
+	</update>
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from
+		<include refid="tableName"></include>
+		where 
+			id=#{id}
+	</select>
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
+			and
+				(
+		  			channel_name LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+					 or
+					contacts_name LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+				)
+		</if>
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+	</select>
+	<!--查询渠道名称是否存在-->
+	<select id="selectObject" parameterType="String" resultType="Integer">
+		select
+		COUNT(1)
+		from
+		<include refid="tableName"></include>
+		where channel_name =#{channel_name}
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			id in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+
+	<select id="findChannelData" parameterType="java.lang.String" resultType="pd">
+		SELECT * FROM (
+			(SELECT COUNT(1) pv FROM channel_data cd WHERE cd.channel_code = #{channel_code}) pv,
+			(SELECT COUNT(1) uv FROM (SELECT u.id FROM `user` u WHERE u.channel_code =  #{channel_code} group by u.id)R) uv,
+			(SELECT COUNT(1) auv FROM credit_card_apply_data ccad WHERE ccad.user_id IN ( SELECT u.id FROM `user` u WHERE u.channel_code =  #{channel_code})) auv,
+			(SELECT COUNT(1) bauv FROM (SELECT T.id FROM (SELECT u.id FROM `user` u WHERE u.channel_code =  #{channel_code} GROUP BY u.id) T WHERE T.id IN (SELECT ucc.user_id FROM `user_credit_card` ucc ))R1 ) bauv
+		)
+	</select>
+	
+</mapper>

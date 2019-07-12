@@ -1,0 +1,14 @@
+/* pages/card/card.wxss */
+.cardlist{
+   display:flex;flex-direction:raw;border-bottom:1px solid #eeeeee;padding:30rpx 0rpx;
+}
+.hot-title{
+  display:inline-block;
+  font-size:40rpx;
+  text-align:left;
+  color:#101319;
+  font-weight:bold;
+}
+.index-hot{
+ display:flex;flex-direction:raw;justify-content:space-between;align-items:center;
+}

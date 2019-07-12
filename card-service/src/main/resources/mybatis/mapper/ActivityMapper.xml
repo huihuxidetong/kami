@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ActivityMapper">
+	<resultMap id="BaseResultMap" type="com.card.inteface.entity.Activity">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="bank_id" property="bankId" jdbcType="VARCHAR" />
+		<result column="bank_credit_card_id" property="bankCreditCardId" jdbcType="VARCHAR" />
+		<result column="activity_name" property="activityName" jdbcType="VARCHAR" />
+		<result column="activity_time_start" property="activityTimeStart" jdbcType="TIMESTAMP" />
+		<result column="activity_time_end" property="activityTimeEnd" jdbcType="TIMESTAMP" />
+		<result column="activity_position" property="activityPosition" jdbcType="VARCHAR" />
+		<result column="activity_type" property="activityType" jdbcType="INTEGER" />
+		<result column="is_has_sign_up" property="isHasSignUp" jdbcType="INTEGER" />
+		<result column="describe" property="describe" jdbcType="VARCHAR" />
+		<result column="activity_custom_lable" property="activityCustomLable" jdbcType="VARCHAR" />
+		<result property="notic" column="notic" typeHandler="com.card.inteface.utils.BlobTypeHandler"/>
+		<result column="create_user_id" property="createUserId" jdbcType="INTEGER" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_user_id" property="updateUserId" jdbcType="INTEGER" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="activity_look_number" property="activityLookNumber" jdbcType="INTEGER" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+
+	</resultMap>
+
+	<resultMap id="ActivityVo" type="com.card.inteface.vo.ActivityVo">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="bank_id" property="bankId" jdbcType="VARCHAR" />
+		<result column="bank_credit_card_id" property="bankCreditCardId" jdbcType="VARCHAR" />
+		<result column="activity_name" property="activityName" jdbcType="VARCHAR" />
+		<result column="activity_time_start" property="activityTimeStart" jdbcType="TIMESTAMP" />
+		<result column="activity_time_end" property="activityTimeEnd" jdbcType="TIMESTAMP" />
+		<result column="activity_position" property="activityPosition" jdbcType="VARCHAR" />
+		<result column="activity_image_url" property="activityImageUrl" jdbcType="VARCHAR" />
+		<result column="activity_type" property="activityType" jdbcType="INTEGER" />
+
+	</resultMap>
+
+	<resultMap id="CreditDetailActivityVo" type="com.card.inteface.vo.CreditDetailActivityVo">
+		<id column="id" property="activityId" jdbcType="INTEGER" />
+		<result column="activity_name" property="activityName" jdbcType="VARCHAR" />
+		<result column="activity_time_start" property="activityTimeStart" jdbcType="TIMESTAMP" />
+		<result column="activity_time_end" property="activityTimeEnd" jdbcType="TIMESTAMP" />
+		<result column="activity_position" property="activityPosition" jdbcType="VARCHAR" />
+		<result column="activity_image_url" property="activityImage" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<resultMap id="ActivityDetailVo" type="com.card.inteface.vo.ActivityDetailVo">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="activity_name" property="activityName" jdbcType="VARCHAR" />
+		<result column="activity_time_start" property="activityTimeStart" jdbcType="TIMESTAMP" />
+		<result column="activity_time_end" property="activityTimeEnd" jdbcType="TIMESTAMP" />
+		<result column="activity_position" property="activityPosition" jdbcType="VARCHAR" />
+		<result column="is_has_sign_up" property="isHasSignUp" jdbcType="INTEGER" />
+		<result column="describe" property="describe" jdbcType="VARCHAR" />
+		<result property="notic" column="notic" typeHandler="com.card.inteface.utils.BlobTypeHandler"/>
+		<result column="user_concern_status" property="userConcernStatus" jdbcType="INTEGER" />
+	</resultMap>
+
+	<resultMap id="ActivityCreditCardVo" type="com.card.inteface.vo.ActivityCreditCardVo">
+		<id column="activity_id" property="activityId" jdbcType="INTEGER" />
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="card_logo" property="cardLogo" jdbcType="VARCHAR" />
+		<result column="bank_name" property="bankName" jdbcType="VARCHAR" />
+		<result column="card_name" property="cardName" jdbcType="VARCHAR" />
+		<result column="card_feature" property="cardFeature" jdbcType="VARCHAR" />
+		<result column="card_look_number" property="cardLookNumber" jdbcType="INTEGER" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		id,
+		bank_id,
+		bank_credit_card_id,
+		activity_name,
+		activity_time_start,
+		activity_time_end,
+		activity_position,
+		activity_type,
+		is_has_sign_up,
+		`describe`,
+		activity_custom_lable,
+		notic,
+		create_user_id,
+		create_time,
+		update_user_id,
+		update_time,
+		activity_look_number
+	</sql>
+	
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from activity
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+		id = #{id,jdbcType=INTEGER}
+		</trim>
+	</select>
+	
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from activity
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+		id = #{id,jdbcType=INTEGER}
+		</trim>
+	</delete>
+	
+	<insert id="insertSelective" parameterType="com.card.inteface.entity.Activity">
+		insert into activity
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="null != id">
+				id,
+			</if>
+			<if test="null != bankId">
+				bank_id,
+			</if>
+			<if test="null != bankCreditCardId">
+				bank_credit_card_id,
+			</if>
+			<if test="null != activityName">
+				activity_name,
+			</if>
+			<if test="null != activityTimeStart">
+				activity_time_start,
+			</if>
+			<if test="null != activityTimeEnd">
+				activity_time_end,
+			</if>
+			<if test="null != activityPosition">
+				activity_position,
+			</if>
+			<if test="null != activityType">
+				activity_type,
+			</if>
+			<if test="null != isHasSignUp">
+				is_has_sign_up,
+			</if>
+			<if test="null != describe">
+				describe,
+			</if>
+			<if test="null != activityCustomLable">
+				activity_custom_lable,
+			</if>
+			<if test="null != notic">
+				notic,
+			</if>
+			<if test="null != createUserId">
+				create_user_id,
+			</if>
+			<if test="null != createTime">
+				create_time,
+			</if>
+			<if test="null != updateUserId">
+				update_user_id,
+			</if>
+			<if test="null != updateTime">
+				update_time,
+			</if>
+			<if test="null != activityLookNumber">
+				activity_look_number,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="null != id">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="null != bankId">
+				#{bankId,jdbcType=VARCHAR},
+			</if>
+			<if test="null != bankCreditCardId">
+				#{bankCreditCardId,jdbcType=VARCHAR},
+			</if>
+			<if test="null != activityName">
+				#{activityName,jdbcType=VARCHAR},
+			</if>
+			<if test="null != activityTimeStart">
+				#{activityTimeStart,jdbcType=TIMESTAMP},
+			</if>
+			<if test="null != activityTimeEnd">
+				#{activityTimeEnd,jdbcType=TIMESTAMP},
+			</if>
+			<if test="null != activityPosition">
+				#{activityPosition,jdbcType=VARCHAR},
+			</if>
+			<if test="null != activityType">
+				#{activityType,jdbcType=INTEGER},
+			</if>
+			<if test="null != isHasSignUp">
+				#{isHasSignUp,jdbcType=INTEGER},
+			</if>
+			<if test="null != describe">
+				#{describe,jdbcType=VARCHAR},
+			</if>
+			<if test="null != activityCustomLable">
+				#{activityCustomLable,jdbcType=VARCHAR},
+			</if>
+			<if test="null != notic">
+				#{notic,jdbcType=BLOB},
+			</if>
+			<if test="null != createUserId">
+				#{createUserId,jdbcType=INTEGER},
+			</if>
+			<if test="null != createTime">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="null != updateUserId">
+				#{updateUserId,jdbcType=INTEGER},
+			</if>
+			<if test="null != updateTime">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="null != activityLookNumber">
+				#{activityLookNumber,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="com.card.inteface.entity.Activity">
+		update activity
+		<set>
+			<if test="null != id">
+				id = #{id,jdbcType=INTEGER},
+			</if>
+			<if test="null != bankId">
+				bank_id = #{bankId,jdbcType=VARCHAR},
+			</if>
+			<if test="null != bankCreditCardId">
+				bank_credit_card_id = #{bankCreditCardId,jdbcType=VARCHAR},
+			</if>
+			<if test="null != activityName">
+				activity_name = #{activityName,jdbcType=VARCHAR},
+			</if>
+			<if test="null != activityTimeStart">
+				activity_time_start = #{activityTimeStart,jdbcType=TIMESTAMP},
+			</if>
+			<if test="null != activityTimeEnd">
+				activity_time_end = #{activityTimeEnd,jdbcType=TIMESTAMP},
+			</if>
+			<if test="null != activityPosition">
+				activity_position = #{activityPosition,jdbcType=VARCHAR},
+			</if>
+			<if test="null != activityType">
+				activity_type = #{activityType,jdbcType=INTEGER},
+			</if>
+			<if test="null != isHasSignUp">
+				is_has_sign_up = #{isHasSignUp,jdbcType=INTEGER},
+			</if>
+			<if test="null != describe">
+				describe = #{describe,jdbcType=VARCHAR},
+			</if>
+			<if test="null != activityCustomLable">
+				activity_custom_lable = #{activityCustomLable,jdbcType=VARCHAR},
+			</if>
+			<if test="null != notic">
+				notic = #{notic,jdbcType=BLOB},
+			</if>
+			<if test="null != createUserId">
+				create_user_id = #{createUserId,jdbcType=INTEGER},
+			</if>
+			<if test="null != createTime">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="null != updateUserId">
+				update_user_id = #{updateUserId,jdbcType=INTEGER},
+			</if>
+			<if test="null != updateTime">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="null != activityLookNumber">
+				activity_look_number = #{activityLookNumber,jdbcType=INTEGER},
+			</if>
+		</set>
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+		id = #{id,jdbcType=INTEGER}
+		</trim>
+	</update>
+
+	<select id="findIndexActivityVo" resultMap="ActivityVo">
+		SELECT a.activity_name,a.activity_time_start,a.activity_time_end,a.activity_position,a.id,a.bank_id,a.bank_credit_card_id,a.activity_type,
+		(select af.image_url from activity_file af where af.activity_id = a.id limit 1) activity_image_url
+		FROM activity a where a.status = 2
+		ORDER BY a.activity_look_number DESC LIMIT 2
+	</select>
+
+	<select id="findActivityVoListByCreditCardId" resultMap="CreditDetailActivityVo" parameterType="java.lang.Integer">
+		SELECT a.activity_name,a.activity_time_start,a.activity_time_end,a.activity_position,a.id,
+		(select af.image_url from activity_file af where af.activity_id = a.id limit 1) activity_image_url
+		from activity a
+		where a.status = 2
+		AND FIND_IN_SET(#{bankCreditCardId,jdbcType=INTEGER}, a.bank_credit_card_id )
+	</select>
+
+	<select id="findActivityList" resultMap="ActivityVo">
+		SELECT a.activity_name,a.activity_time_start,a.activity_time_end,a.activity_position,a.id,a.bank_id,a.bank_credit_card_id,a.activity_type,
+		(select af.image_url from activity_file af where af.activity_id = a.id limit 1 )activity_image_url
+		FROM activity a where a.status = 2
+		ORDER BY a.activity_time_start DESC
+	</select>
+
+	<select id="findActivityDetailVo" parameterType="java.lang.Integer" resultMap="ActivityDetailVo">
+		SELECT a.id,a.activity_name,a.activity_time_start,a.activity_time_end,a.activity_position,a.describe,a.notic,a.is_has_sign_up,
+		(SELECT ucb.status FROM user_concern_basic ucb WHERE a.id = ucb.concern_id AND ucb.user_id = #{userId}) user_concern_status
+		FROM activity a
+		where a.id = #{id}
+	</select>
+
+	<select id="findActivityCreditCardVo" resultMap="ActivityCreditCardVo" parameterType="java.lang.Integer">
+		SELECT bcc.id,bcc.card_name,cci.card_logo,b.bank_name,cci.card_feature,cci.card_look_number FROM bank_credit_card bcc
+		LEFT JOIN credit_card_info cci ON bcc.id = cci.bank_credit_card_id
+		LEFT JOIN bank b ON bcc.bank_id = b.id
+		WHERE FIND_IN_SET(bcc.id,(SELECT a.bank_credit_card_id FROM activity  a WHERE a.id = #{id}))
+		AND cci.status = 1
+		GROUP BY id
+		ORDER BY cci.card_look_number DESC
+		LIMIT 3
+	</select>
+
+	<select id="findActivityCreditCardPage" resultMap="ActivityCreditCardVo" parameterType="java.lang.Integer">
+		SELECT bcc.id,bcc.card_name,cci.card_logo,b.bank_name,cci.card_feature,cci.card_look_number FROM bank_credit_card bcc
+		LEFT JOIN credit_card_info cci ON bcc.id = cci.bank_credit_card_id
+		LEFT JOIN bank b ON bcc.bank_id = b.id
+		WHERE FIND_IN_SET(bcc.id,(SELECT a.bank_credit_card_id FROM activity  a WHERE a.id = #{id}))
+		AND cci.status = 1
+		GROUP BY id
+		ORDER BY cci.card_look_number DESC
+	</select>
+
+	<select id="findWaitingActivity" resultMap="BaseResultMap">
+		SELECT *
+		FROM activity
+		WHERE STATUS =1
+		AND NOW() > activity_time_start
+	</select>
+
+	<select id="findIngActivity" resultMap="BaseResultMap">
+		SELECT *
+		FROM activity
+		WHERE STATUS =2
+		AND NOW() > activity_time_end
+	</select>
+
+	<update id="updateById" parameterType="com.card.inteface.entity.Activity">
+		update activity
+		set status = #{status,jdbcType=INTEGER}
+	    where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<update id="updateActivityLookNumber" parameterType="com.card.inteface.entity.Activity">
+		update activity
+		set activity_look_number = #{activityLookNumber}
+	    where id = #{id,jdbcType=INTEGER}
+	</update>
+</mapper>

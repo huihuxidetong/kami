@@ -1,0 +1,10 @@
+<view style="background:#edeff2;height:1px"></view>
+<view style='height:108rpx;display:flex;align-items:center;margin-left:30rpx;padding-right:30rpx;border-bottom:1px solid #edeff2'>
+  <text class='leftText' style='margin-right:50rpx'>卡类型</text>
+  <text class='rightInput' >{{cardName}}</text>
+</view>
+<view style='height:108rpx;display:flex;align-items:center;margin-left:30rpx;padding-right:30rpx;border-bottom:1px solid #edeff2'>
+  <text class='leftText' style='margin-right:80rpx'>卡号</text>
+  <text class='rightInput' >{{cardNo}}</text>
+</view>
+<button class='next' bindtap='confirm'>确定</button> 

@@ -1,0 +1,7 @@
+<view style="background:#edeff2;height:1px"></view>
+<view style='height:128rpx;margin-left:30rpx;border-bottom:2rpx solid #edeff2;display:flex;align-items:center' wx:for="{{followList}}" wx:for-item="item">
+  <image style='width:80rpx;height:80rpx;border-radius:50%;overflow:hidden;' src='{{item.userPortrait }}'></image>
+  <text style='font-size:30rpx;color:#101319;margin-left:20rpx'>{{item.nickName }}</text>
+</view>
+ <view class="loading"  wx:if="{{searchLoading}}">加载中</view>
+    <view class="loading complete"  wx:if="{{searchLoadingComplete}}">已加载全部</view>

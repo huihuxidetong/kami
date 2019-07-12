@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CreditMapper">
+	
+	<!--表名 -->
+	<sql id="tableName">
+		CREDIT_CARD_INFO
+	</sql>
+	
+	<!-- 字段 -->
+	<sql id="Field">
+		id,
+		card_logo,
+		bank_id,
+		bank_credit_card_id,
+		card_feature,
+		card_leval,
+		card_currency,
+		card_hairpin_organi,
+		free_interest_period,
+		free_interest_rule,
+		apply_condition,
+		first_brush_ceremony,
+		card_label,
+		card_privilege,
+		opr_process,
+		create_user_id,
+		create_time,
+		update_user_id,
+		update_time,
+		status,
+		card_look_number,
+		is_hot,
+		open_credit_card_url,
+        card_choose_label,
+        credit_characters,
+        integral_rule
+	</sql>
+	
+	<!-- 字段值 -->
+	<sql id="FieldValue">
+		#{id},
+		#{card_logo},
+		#{bank_id},
+		#{bank_credit_card_id},
+		#{card_feature},
+		#{card_leval},
+		#{card_currency},
+		#{card_hairpin_organi},
+		#{free_interest_period},
+		#{free_interest_rule},
+		#{apply_condition},
+		#{first_brush_ceremony},
+		#{card_label},
+		#{card_privilege},
+		#{opr_process},
+		#{create_user_id},
+		#{create_time},
+		#{update_user_id},
+		#{update_time},
+		#{status},
+		#{card_look_number},
+		#{is_hot},
+		#{open_credit_card_url},
+		#{card_choose_label},
+		#{credit_characters},
+		#{integral_rule}
+	</sql>
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into
+		<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+			SELECT LAST_INSERT_ID() AS id
+		</selectKey>
+		<include refid="tableName"></include>
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="id != null and id != ''" >
+				id,
+			</if>
+			<if test="card_logo != null and card_logo != ''" >
+				card_logo,
+			</if>
+			<if test="bank_id != null and bank_id != ''" >
+				bank_id,
+			</if>
+			<if test="bank_credit_card_id != null and bank_credit_card_id != ''" >
+				bank_credit_card_id,
+			</if>
+			<if test="card_feature != null and card_feature != ''" >
+				card_feature,
+			</if>
+			<if test="card_leval != null and card_leval != ''" >
+				card_leval,
+			</if>
+			<if test="card_currency != null and card_currency != ''" >
+				card_currency,
+			</if>
+			<if test="card_hairpin_organi != null and card_hairpin_organi != ''" >
+				card_hairpin_organi,
+			</if>
+			<if test="free_interest_period != null and free_interest_period != ''" >
+				free_interest_period,
+			</if>
+			<if test="free_interest_rule != null and free_interest_rule != ''" >
+				free_interest_rule,
+			</if>
+			<if test="apply_condition != null and apply_condition != ''" >
+				apply_condition,
+			</if>
+			<if test="first_brush_ceremony != null and first_brush_ceremony != ''" >
+				first_brush_ceremony,
+			</if>
+			<if test="card_label != null and card_label != ''" >
+				card_label,
+			</if>
+			<if test="card_privilege != null and card_privilege != ''" >
+				card_privilege,
+			</if>
+			<if test="opr_process != null and opr_process != ''" >
+				opr_process,
+			</if>
+			<if test="create_user_id != null and create_user_id != ''" >
+				create_user_id,
+			</if>
+			<if test="create_time != null and create_time != ''" >
+				create_time,
+			</if>
+			<if test="update_user_id != null and update_user_id != ''" >
+				update_user_id,
+			</if>
+			<if test="update_time != null and update_time != ''" >
+				update_time,
+			</if>
+			<if test="status != null and status != ''" >
+				status,
+			</if>
+			<if test="card_look_number != null and card_look_number != ''" >
+				card_look_number,
+			</if>
+			<if test="is_hot != null and is_hot != ''" >
+				is_hot,
+			</if>
+			<if test="open_credit_card_url != null and open_credit_card_url != ''">
+				open_credit_card_url,
+			</if>
+            <if test="card_choose_label != null and card_choose_label != ''">
+                card_choose_label,
+            </if>
+			<if test="credit_characters != null and credit_characters != ''">
+				credit_characters,
+			</if>
+			<if test="integral_rule != null and integral_rule != ''">
+				integral_rule
+			</if>
+
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="id != null and id != ''" >
+				#{id},
+			</if>
+			<if test="card_logo != null and card_logo != ''" >
+				#{card_logo},
+			</if>
+			<if test="bank_id != null and bank_id != ''" >
+				#{bank_id},
+			</if>
+			<if test="bank_credit_card_id != null and bank_credit_card_id != ''" >
+				#{bank_credit_card_id},
+			</if>
+			<if test="card_feature != null and card_feature != ''" >
+				#{card_feature},
+			</if>
+			<if test="card_leval != null and card_leval != ''" >
+				#{card_leval},
+			</if>
+			<if test="card_currency != null and card_currency != ''" >
+				#{card_currency},
+			</if>
+			<if test="card_hairpin_organi != null and card_hairpin_organi != ''" >
+				#{card_hairpin_organi},
+			</if>
+			<if test="free_interest_period != null and free_interest_period != ''" >
+				#{free_interest_period},
+			</if>
+			<if test="free_interest_rule != null and free_interest_rule != ''" >
+				#{free_interest_rule},
+			</if>
+			<if test="apply_condition != null and apply_condition != ''" >
+				#{apply_condition},
+			</if>
+			<if test="first_brush_ceremony != null and first_brush_ceremony != ''" >
+				#{first_brush_ceremony},
+			</if>
+			<if test="card_label != null and card_label != ''" >
+				#{card_label},
+			</if>
+			<if test="card_privilege != null and card_privilege != ''" >
+				#{card_privilege},
+			</if>
+			<if test="opr_process != null and opr_process != ''" >
+				#{opr_process},
+			</if>
+			<if test="create_user_id != null and create_user_id != ''" >
+				#{create_user_id},
+			</if>
+			<if test="create_time != null and create_time != ''" >
+				#{create_time},
+			</if>
+			<if test="update_user_id != null and update_user_id != ''" >
+				#{update_user_id},
+			</if>
+			<if test="update_time != null and update_time != ''" >
+				#{update_time},
+			</if>
+			<if test="status != null and status != ''" >
+				#{status},
+			</if>
+			<if test="card_look_number != null and card_look_number != ''" >
+				#{card_look_number},
+			</if>
+			<if test="is_hot != null and is_hot != ''" >
+				#{is_hot},
+			</if>
+			<if test="open_credit_card_url != null and open_credit_card_url != ''">
+				#{open_credit_card_url},
+			</if>
+            <if test="card_choose_label != null and card_choose_label != ''">
+                #{card_choose_label},
+            </if>
+			<if test="credit_characters != null and credit_characters != ''">
+				#{credit_characters},
+			</if>
+			<if test="integral_rule != null and integral_rule != ''">
+				#{integral_rule},
+			</if>
+
+		</trim>
+	</insert>
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from
+		<include refid="tableName"></include>
+		where
+		id=#{id}
+	</delete>
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update
+		<include refid="tableName"></include>
+		set
+		<trim  suffixOverrides="," >
+			<if test="card_logo != null and card_logo != ''" >
+				card_logo = #{card_logo},
+			</if>
+			<if test="bank_id != null and bank_id != ''" >
+				bank_id = #{bank_id},
+			</if>
+			<if test="bank_credit_card_id != null and bank_credit_card_id != ''" >
+				bank_credit_card_id = #{bank_credit_card_id},
+			</if>
+			<if test="card_feature != null and card_feature != ''" >
+				card_feature = #{card_feature},
+			</if>
+			<if test="card_leval != null and card_leval != ''" >
+				card_leval = #{card_leval},
+			</if>
+			<if test="card_currency != null and card_currency != ''" >
+				card_currency = #{card_currency},
+			</if>
+			<if test="card_hairpin_organi != null and card_hairpin_organi != ''" >
+				card_hairpin_organi = #{card_hairpin_organi},
+			</if>
+				free_interest_period = #{free_interest_period},
+			<if test="free_interest_rule != null and free_interest_rule != ''" >
+				free_interest_rule = #{free_interest_rule},
+			</if>
+				apply_condition = #{apply_condition},
+				first_brush_ceremony = #{first_brush_ceremony},
+			<if test="card_label != null and card_label != ''" >
+				card_label = #{card_label},
+			</if>
+			<if test="card_privilege != null and card_privilege != ''" >
+				card_privilege = #{card_privilege},
+			</if>
+			<if test="opr_process != null and opr_process != ''" >
+				opr_process = #{opr_process},
+			</if>
+			<if test="create_user_id != null and create_user_id != ''" >
+				create_user_id = #{create_user_id},
+			</if>
+			<if test="create_time != null and create_time != ''" >
+				create_time = #{create_time},
+			</if>
+			<if test="update_user_id != null and update_user_id != ''" >
+				update_user_id = #{update_user_id},
+			</if>
+			<if test="update_time != null and update_time != ''" >
+				update_time = #{update_time},
+			</if>
+			<if test="status != null and status != ''" >
+				status = #{status},
+			</if>
+			<if test="card_look_number != null and card_look_number != ''" >
+				card_look_number = #{card_look_number},
+			</if>
+			<if test="is_hot != null and is_hot != ''" >
+				is_hot = #{is_hot},
+			</if>
+			<if test="open_credit_card_url != null and open_credit_card_url != ''">
+				open_credit_card_url = #{open_credit_card_url},
+			</if>
+            <if test="card_choose_label != null and card_choose_label != ''">
+                card_choose_label = #{card_choose_label},
+            </if>
+			<if test="credit_characters != null and credit_characters != ''">
+				credit_characters = #{credit_characters},
+			</if>
+			<if test="integral_rule != null and integral_rule != ''">
+				integral_rule = #{integral_rule},
+			</if>
+		</trim>
+		where
+		id = #{id}
+	</update>
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		SELECT b.id bank_id,bcc.id bank_credit_card_id,cci.id,cci.card_logo,b.bank_name,b.bank_logo,bcc.card_name,cci.card_feature,cci.card_leval,
+		cci.card_currency,cci.card_hairpin_organi,cci.free_interest_period,cci.integral_rule,cci.card_label,cci.card_privilege,
+		cci.apply_condition,cci.credit_characters,cci.first_brush_ceremony,cci.card_label,cci.open_credit_card_url,cci.card_choose_label,cci.opr_process
+		FROM bank_credit_card bcc
+		left join credit_card_info cci on bcc.id = cci.bank_credit_card_id
+		LEFT JOIN bank b ON bcc.bank_id=b.id
+		where cci.id=#{id}
+	</select>
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select cci.id, b.bank_name,bcc.card_name,cci.card_leval,cci.card_currency,cci.free_interest_period,cci.integral_rule,cci.card_label,cci.credit_characters,cci.card_hairpin_organi,cci.status ,cci.create_time from credit_card_info cci
+		left join bank b on cci.bank_id = b.id
+		left join bank_credit_card bcc on cci.bank_credit_card_id = bcc.id
+		where 1=1
+		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
+		  and
+			  (
+				b.bank_name LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+				or
+				bcc.card_name LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+			  )
+		</if>
+		order by cci.create_time desc
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			id in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+
+	<!--更新信用卡的状态-->
+	<update id="updateCreditState">
+		update
+		<include refid="tableName"></include>
+		set
+		status = #{status}
+		where id = #{id}
+	</update>
+
+	<select id="findAllCreditCardByBankId" parameterType="pd" resultType="pd">
+		SELECT bcc.* FROM bank_credit_card bcc
+		WHERE FIND_IN_SET(bcc.bank_id,#{bank_ids})
+	</select>
+
+	<select id="findAllCreditCardIdsByBankId" parameterType="pd" resultType="java.lang.String">
+		SELECT GROUP_CONCAT(id) bank_credit_card_id FROM bank_credit_card bcc
+		WHERE FIND_IN_SET(bcc.bank_id,#{bank_ids})
+	</select>
+</mapper>

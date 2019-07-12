@@ -1,0 +1,17 @@
+<view hidden="{{notice}}" class="notice">可添加任意一张信用卡获得10积分。<image src="../../images/icon/close.png" bindtap="closeNotice" style="width:20rpx;height:20rpx;float:right;margin-top:24rpx;"></image></view>
+<view class='mycontainer'>
+  <view style='background:#fff;padding:35rpx 20rpx 50rpx 20rpx;margin-bottom:20rpx; box-shadow:0rpx 5rpx  30rpx rgba(208,213,225,0.2); border-radius: 10rpx;overflow:hidden' wx:for="{{bankList}}" wx:for-item="item" data-id='{{item.id}}'>
+    <view style='display:flex;align-items:center;margin-bottom:50rpx;border-radius:10rpx;'>
+      <image style='width:50rpx;height:50rpx;margin-right:15rpx' src='{{imgDomain+item.bankLogo}}'></image>
+      <text style='font-size:32rpx;color:#101319;'>{{item.bankName}}{{item.cardName}}</text>
+    </view>
+    <view style='font-size:48rpx;color:#101319;margin-left:65rpx;font-weight:bold;'>{{item.creditCardNumber}}</view>
+  </view>
+  <!-- 添加信用卡 -->
+  <view style=' display:flex;align-items:center;border-radius:10rpx;background:#fff;justify-content:center;height:98rpx;box-shadow:0rpx 5rpx  30rpx rgba(208,213,225,0.2)' bindtap='addCard'>
+    <image style='height:36rpx;width:36rpx;margin-right:16rpx' src='../../images/icon/add.png'></image>
+    <text style='font-size:32rpx;color:#101319;'>添加信用卡</text>  
+  </view>
+ 
+
+</view>

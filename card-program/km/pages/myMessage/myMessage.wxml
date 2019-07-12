@@ -1,0 +1,32 @@
+
+<view class="bgView">
+  
+    <view class="cell" wx:for="{{messageList}}" bindtap="updatemessageStatus" wx:for-item="item"  wx:for-index="index" data-id="{{item.id}}" data-cardid="{{item.creditCardId}}" data-index="{{index}}">
+      <view style="border-bottom: 1px solid #ececec;padding:25rpx 0">
+      <view style="display:flex;flex-direction:row;justify-content:space-between;padding-right:30rpx">
+        <view class="title"><text style='color: #101319;font-size: 30rpx;font-weight:bold'>{{item.fromNickname}}</text>
+             回复了您的消息:</view>
+        <text class="mark" wx:if="{{item.isRead == 0}}"></text>
+        </view>
+        <view style="display:flex;flex-direction:row;justify-content:space-between;padding-right:30rpx">
+        <view class="comment" >{{item.content}}</view>
+        <view class="date">{{item.createTime}}</view>
+        </view>
+        </view>
+    </view>
+<view class="loading"  wx:if="{{searchLoading}}">加载中</view>
+    <view class="loading complete"  wx:if="{{searchLoadingComplete}}">已加载全部</view>
+    <!-- 暂无消息 -->
+  <view  wx:if="{{messageList==null||messageList.length == 0}}" style='text-align:center;width:100%'>
+    <image style='width:275rpx;height:198rpx;margin:255rpx 0 25rpx 0' src='../../images/icon/no_message.png'></image>
+    <view style='font-size:26rpx;color:#b4bacc'>暂无消息</view>
+  </view>
+</view>
+
+
+
+<block wx:if="{{messageList != null && messageList != ''}}">
+    <view class="button" bindtap="updatemessageStatus" data-id="">全部标记为已读</view>
+</block>
+
+ 

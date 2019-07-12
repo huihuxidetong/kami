@@ -1,0 +1,11 @@
+<view style="height:2rpx;background:#edeff2;"></view>
+ <view class="cardlist" wx:for="{{cardList}}" wx:for-item="item" wx:key="*this" bindtap='goCardDetail' data-id='{{item.id}}'>
+      <image class="cardimage" src='{{imgDomain+item.cardLogo}}'></image>
+      <view class="carddetail">
+        <text class="cardtitle gamemargin">{{item.bankName}}{{item.cardName}}</text>
+        <text class="carddes cardmargin">{{item.cardFeature}}</text>
+        <text class="carddes">已有<text style='color:#ff5600;'>{{item.cardLookNumber}}</text>人查看</text>   
+      </view>
+    </view>
+     <view class="loading" wx:if="{{searchLoading}}">加载中</view>
+    <view class="loading complete" wx:if="{{searchLoadingComplete}}">已加载全部</view>

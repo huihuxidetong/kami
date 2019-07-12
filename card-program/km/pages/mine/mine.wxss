@@ -1,0 +1,16 @@
+/* pages/mine/mine.wxss */
+.bottomview{
+  height:430rpx;
+  width: 100%;
+  text-align:center;
+  font-size:40rpx;
+  background-color:#f8fbfe;
+  border-top:0px solid #CCC;
+  bottom:0rpx;
+}
+
+.mycontainer1{
+ height: 120vh; 
+ background:#f9fbfe;
+ padding:20rpx 30rpx
+}

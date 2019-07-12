@@ -1,0 +1,10 @@
+.next{
+  border-radius: 2rem;
+  background: #ff5600;
+  height: 88rpx;
+  line-height:88rpx;
+  color: #fff;
+  font-size:32rpx;
+  margin:60rpx 30rpx;
+  
+}

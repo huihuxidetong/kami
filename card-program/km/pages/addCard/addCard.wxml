@@ -1,0 +1,38 @@
+<view style="background:#edeff2;height:1px"></view>
+<view style='height:108rpx;display:flex;align-items:center;margin-left:30rpx;padding-right:30rpx;border-bottom:1px solid #edeff2'>
+  <text class='leftText' style='margin-right:80rpx'>持卡人</text>
+  <input placeholder='请填写持卡人姓名' class='rightInput' maxlength='10' placeholder-class='rightHolder' bindinput='iputname'></input>
+</view>
+<view style='height:108rpx;display:flex;align-items:center;margin-left:30rpx;padding-right:30rpx;border-bottom:1px solid #edeff2'>
+  <text class='leftText' style='margin-right:110rpx'>卡号</text>
+  <input placeholder='请填写需要绑定的卡号' class='rightInput' maxlength='19' placeholder-class='rightHolder' type='number' bindinput='iputcard'></input>
+</view>
+<view style='height:108rpx;display:flex;align-items:center;margin-left:30rpx;padding-right:30rpx;border-bottom:1px solid #edeff2' bindtap='choosebankName'>
+  <text class='leftText' style='margin-right:50rpx'>发卡银行</text>
+  <input placeholder='选择发卡银行' class='rightInput' placeholder-class='rightHolder' disabled='true' style='flex:1' value="{{bankName}}"></input>
+  <image src="../../images/icon/list_right.png" style="width:16rpx;height:28rpx;"></image>
+</view>
+<view style='height:108rpx;display:flex;align-items:center;margin-left:30rpx;padding-right:30rpx;border-bottom:1px solid #edeff2' bindtap='choosecardCategory'>
+  <text class='leftText' style='margin-right:110rpx'>类别</text>
+  <input placeholder='选择类别' class='rightInput' placeholder-class='rightHolder' disabled='true' style='flex:1' value="{{cardCategory}}"></input>
+  <image src="../../images/icon/list_right.png" style="width:16rpx;height:28rpx;"></image>
+</view>
+<button class='next' bindtap='gonext'>下一步</button> 
+<view class="picker-view"  style="visibility:{{isChoose ? 'visible':'hidden'}}">
+    <view class="picker-btn">
+      <text class="cancelBtn" catchtap="chooseCancle">取消</text>
+      <text class="sureBtn" catchtap="chooseConfirm">确定</text>
+    </view>
+     <!--"可以显示默认的城市，使用后级联选择城市反应很慢就不使用了-->
+  <picker-view style="width: 100%; height: 300rpx;" bindchange="bankChange" value="{{value}}" wx:key="">
+    <picker-view-column>
+      <view wx:for="{{banklist}}" class="picker-item">
+        {{item.bankName}}</view>
+    </picker-view-column>
+     <!-- <picker-view-column>
+      <view wx:for="{{carCitys}}" class="picker-item">
+        {{item.text}}</view>
+    </picker-view-column> -->
+  </picker-view>
+</view>
+<view class="modal-mask" style="visibility:{{isChoose ? 'visible':'hidden'}}"></view>

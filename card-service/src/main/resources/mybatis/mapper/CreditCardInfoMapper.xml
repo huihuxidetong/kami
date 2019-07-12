@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="CreditCardInfoMapper">
+	<resultMap id="BaseResultMap" type="com.card.inteface.entity.CreditCardInfo">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="card_logo" property="cardLogo" jdbcType="VARCHAR" />
+		<result column="bank_id" property="bankId" jdbcType="INTEGER" />
+		<result column="bank_credit_card_id" property="bankCreditCardId" jdbcType="INTEGER" />
+		<result column="card_feature" property="cardFeature" jdbcType="VARCHAR" />
+		<result column="card_leval" property="cardLeval" jdbcType="VARCHAR" />
+		<result column="card_currency" property="cardCurrency" jdbcType="VARCHAR" />
+		<result column="card_hairpin_organi" property="cardHairpinOrgani" jdbcType="VARCHAR" />
+		<result column="free_interest_period" property="freeInterestPeriod" jdbcType="VARCHAR" />
+		<result column="free_interest_rule" property="freeInterestRule" jdbcType="VARCHAR" />
+		<result column="apply_condition" property="applyCondition" jdbcType="VARCHAR" />
+		<result column="first_brush_ceremony" property="firstBrushCeremony" jdbcType="VARCHAR" />
+		<result column="card_label" property="cardLabel" jdbcType="VARCHAR" />
+		<result column="card_privilege" property="cardPrivilege" jdbcType="VARCHAR" />
+		<result column="opr_process" property="oprProcess" jdbcType="VARCHAR" />
+		<result column="create_user_id" property="createUserId" jdbcType="INTEGER" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_user_id" property="updateUserId" jdbcType="INTEGER" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="card_look_number" property="cardLookNumber" jdbcType="INTEGER" />
+		<result column="is_hot" property="isHot" jdbcType="INTEGER" />
+		<result column="open_credit_card_url" property="openCreditCardUrl" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<resultMap id="CreditCardInfoVo" type="com.card.inteface.vo.CreditCardInfoVo">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="card_logo" property="cardLogo" jdbcType="VARCHAR" />
+		<result column="bank_id" property="bankId" jdbcType="INTEGER" />
+		<result column="bank_credit_card_id" property="bankCreditCardId" jdbcType="INTEGER" />
+		<result column="card_feature" property="cardFeature" jdbcType="VARCHAR" />
+		<result column="card_look_number" property="cardLookNumber" jdbcType="INTEGER" />
+		<result column="bank_name" property="bankName" jdbcType="VARCHAR" />
+		<result column="card_name" property="cardName" jdbcType="VARCHAR" />
+		<result column="bank_logo" property="bankLogo" jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="CreditCardInfoHotVo" type="com.card.inteface.vo.CreditCardInfoHotVo">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="card_logo" property="cardLogo" jdbcType="VARCHAR" />
+		<result column="bank_id" property="bankId" jdbcType="INTEGER" />
+		<result column="bank_credit_card_id" property="bankCreditCardId" jdbcType="INTEGER" />
+		<result column="card_feature" property="cardFeature" jdbcType="VARCHAR" />
+		<result column="card_look_number" property="cardLookNumber" jdbcType="INTEGER" />
+		<result column="bank_name" property="bankName" jdbcType="VARCHAR" />
+		<result column="card_name" property="cardName" jdbcType="VARCHAR" />
+		<result column="bank_logo" property="bankLogo" jdbcType="VARCHAR" />
+		<result column="credit_card_apply_number" property="creditCardApplyNumber" jdbcType="INTEGER" />
+	</resultMap>
+
+	<resultMap id="CreditCardDetailVo" type="com.card.inteface.vo.CreditCardDetailVo">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="card_logo" property="cardLogo" jdbcType="VARCHAR" />
+		<result column="bank_id" property="bankId" jdbcType="INTEGER" />
+		<result column="bank_name" property="bankName" jdbcType="VARCHAR" />
+		<result column="card_name" property="cardName" jdbcType="VARCHAR" />
+		<result column="card_feature" property="cardFeature" jdbcType="VARCHAR" />
+		<result column="card_label" property="cardLabel" jdbcType="VARCHAR" />
+		<result column="card_leval" property="cardLeval" jdbcType="VARCHAR" />
+		<result column="card_currency" property="cardCurrency" jdbcType="INTEGER" />
+		<result column="card_hairpin_organi" property="cardHairpinOrgani" jdbcType="INTEGER" />
+		<result column="free_interest_rule" property="freeInterestRule" jdbcType="VARCHAR" />
+		<result column="integral_rule" property="integralRule" jdbcType="VARCHAR" />
+		<result column="apply_condition" property="applyCondition" jdbcType="VARCHAR" />
+		<result column="first_brush_ceremony" property="firstBrushCeremony" jdbcType="VARCHAR" />
+		<result column="card_privilege" property="cardPrivilege" jdbcType="VARCHAR" />
+		<result column="opr_process" property="oprProcess" jdbcType="VARCHAR" />
+		<result column="user_concern_status" property="userConcernStatus" jdbcType="INTEGER" />
+		<result column="open_credit_card_url" property="openCreditCardUrl" jdbcType="VARCHAR" />
+		<result column="card_choose_label" property="cardChooseLabel" jdbcType="VARCHAR" />
+		<result column="credit_characters" property="creditCharacters" jdbcType="VARCHAR" />
+		<result column="free_interest_period" property="freeInterestPeriod" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		id,
+		card_logo,
+		bank_id,
+		bank_credit_card_id,
+		card_feature,
+		card_leval,
+		card_currency,
+		card_hairpin_organi,
+		free_interest_period,
+		free_interest_rule,
+		apply_condition,
+		first_brush_ceremony,
+		card_label,
+		card_privilege,
+		opr_process,
+		create_user_id,
+		create_time,
+		update_user_id,
+		update_time,
+		status,
+		card_look_number,
+		is_hot,
+		open_credit_card_url
+	</sql>
+	
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from credit_card_info
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			bank_credit_card_id = #{bankCreditCardId,jdbcType=INTEGER}
+		</trim>
+		limit 1
+	</select>
+	
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from credit_card_info
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+		id = #{id,jdbcType=INTEGER}
+		</trim>
+	</delete>
+	
+	<insert id="insertSelective" parameterType="com.card.inteface.entity.CreditCardInfo">
+		insert into credit_card_info
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="null != id">
+				id,
+			</if>
+			<if test="null != cardLogo">
+				card_logo,
+			</if>
+			<if test="null != bankId">
+				bank_id,
+			</if>
+			<if test="null != bankCreditCardId">
+				bank_credit_card_id,
+			</if>
+			<if test="null != cardFeature">
+				card_feature,
+			</if>
+			<if test="null != cardLeval">
+				card_leval,
+			</if>
+			<if test="null != cardCurrency">
+				card_currency,
+			</if>
+			<if test="null != cardHairpinOrgani">
+				card_hairpin_organi,
+			</if>
+			<if test="null != freeInterestPeriod">
+				free_interest_period,
+			</if>
+			<if test="null != freeInterestRule">
+				free_interest_rule,
+			</if>
+			<if test="null != applyCondition">
+				apply_condition,
+			</if>
+			<if test="null != firstBrushCeremony">
+				first_brush_ceremony,
+			</if>
+			<if test="null != cardLabel">
+				card_label,
+			</if>
+			<if test="null != cardPrivilege">
+				card_privilege,
+			</if>
+			<if test="null != oprProcess">
+				opr_process,
+			</if>
+			<if test="null != createUserId">
+				create_user_id,
+			</if>
+			<if test="null != createTime">
+				create_time,
+			</if>
+			<if test="null != updateUserId">
+				update_user_id,
+			</if>
+			<if test="null != updateTime">
+				update_time,
+			</if>
+			<if test="null != status">
+				status,
+			</if>
+			<if test="null != cardLookNumber">
+				card_look_number,
+			</if>
+			<if test="null != isHot">
+				is_hot,
+			</if>
+			<if test="null != openCreditCardUrl">
+				open_credit_card_url,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="null != id">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="null != cardLogo">
+				#{cardLogo,jdbcType=VARCHAR},
+			</if>
+			<if test="null != bankId">
+				#{bankId,jdbcType=INTEGER},
+			</if>
+			<if test="null != bankCreditCardId">
+				#{bankCreditCardId,jdbcType=INTEGER},
+			</if>
+			<if test="null != cardFeature">
+				#{cardFeature,jdbcType=VARCHAR},
+			</if>
+			<if test="null != cardLeval">
+				#{cardLeval,jdbcType=VARCHAR},
+			</if>
+			<if test="null != cardCurrency">
+				#{cardCurrency,jdbcType=VARCHAR},
+			</if>
+			<if test="null != cardHairpinOrgani">
+				#{cardHairpinOrgani,jdbcType=VARCHAR},
+			</if>
+			<if test="null != freeInterestPeriod">
+				#{freeInterestPeriod,jdbcType=VARCHAR},
+			</if>
+			<if test="null != freeInterestRule">
+				#{freeInterestRule,jdbcType=VARCHAR},
+			</if>
+			<if test="null != applyCondition">
+				#{applyCondition,jdbcType=VARCHAR},
+			</if>
+			<if test="null != firstBrushCeremony">
+				#{firstBrushCeremony,jdbcType=VARCHAR},
+			</if>
+			<if test="null != cardLabel">
+				#{cardLabel,jdbcType=VARCHAR},
+			</if>
+			<if test="null != cardPrivilege">
+				#{cardPrivilege,jdbcType=VARCHAR},
+			</if>
+			<if test="null != oprProcess">
+				#{oprProcess,jdbcType=VARCHAR},
+			</if>
+			<if test="null != createUserId">
+				#{createUserId,jdbcType=INTEGER},
+			</if>
+			<if test="null != createTime">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="null != updateUserId">
+				#{updateUserId,jdbcType=INTEGER},
+			</if>
+			<if test="null != updateTime">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="null != status">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="null != cardLookNumber">
+				#{cardLookNumber,jdbcType=INTEGER},
+			</if>
+			<if test="null != isHot">
+				#{isHot,jdbcType=INTEGER},
+			</if>
+			<if test="null != openCreditCardUrl">
+				#{openCreditCardUrl,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="com.card.inteface.entity.CreditCardInfo">
+		update credit_card_info
+		<set>
+			<if test="null != id">
+				id = #{id,jdbcType=INTEGER},
+			</if>
+			<if test="null != cardLogo">
+				card_logo = #{cardLogo,jdbcType=VARCHAR},
+			</if>
+			<if test="null != bankId">
+				bank_id = #{bankId,jdbcType=INTEGER},
+			</if>
+			<if test="null != bankCreditCardId">
+				bank_credit_card_id = #{bankCreditCardId,jdbcType=INTEGER},
+			</if>
+			<if test="null != cardFeature">
+				card_feature = #{cardFeature,jdbcType=VARCHAR},
+			</if>
+			<if test="null != cardLeval">
+				card_leval = #{cardLeval,jdbcType=VARCHAR},
+			</if>
+			<if test="null != cardCurrency">
+				card_currency = #{cardCurrency,jdbcType=VARCHAR},
+			</if>
+			<if test="null != cardHairpinOrgani">
+				card_hairpin_organi = #{cardHairpinOrgani,jdbcType=VARCHAR},
+			</if>
+			<if test="null != freeInterestPeriod">
+				free_interest_period = #{freeInterestPeriod,jdbcType=VARCHAR},
+			</if>
+			<if test="null != freeInterestRule">
+				free_interest_rule = #{freeInterestRule,jdbcType=VARCHAR},
+			</if>
+			<if test="null != applyCondition">
+				apply_condition = #{applyCondition,jdbcType=VARCHAR},
+			</if>
+			<if test="null != firstBrushCeremony">
+				first_brush_ceremony = #{firstBrushCeremony,jdbcType=VARCHAR},
+			</if>
+			<if test="null != cardLabel">
+				card_label = #{cardLabel,jdbcType=VARCHAR},
+			</if>
+			<if test="null != cardPrivilege">
+				card_privilege = #{cardPrivilege,jdbcType=VARCHAR},
+			</if>
+			<if test="null != oprProcess">
+				opr_process = #{oprProcess,jdbcType=VARCHAR},
+			</if>
+			<if test="null != createUserId">
+				create_user_id = #{createUserId,jdbcType=INTEGER},
+			</if>
+			<if test="null != createTime">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="null != updateUserId">
+				update_user_id = #{updateUserId,jdbcType=INTEGER},
+			</if>
+			<if test="null != updateTime">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="null != status">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="null != cardLookNumber">
+				card_look_number = #{cardLookNumber,jdbcType=INTEGER},
+			</if>
+			<if test="null != isHot">
+				is_hot = #{isHot,jdbcType=INTEGER},
+			</if>
+			<if test="null != openCreditCardUrl">
+				open_credit_card_url = #{openCreditCardUrl,jdbcType=VARCHAR},
+			</if>
+		</set>
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+		id = #{id,jdbcType=INTEGER}
+
+		</trim>
+	</update>
+
+	<select id="findIndexCreditCardInfoVo" resultMap="CreditCardInfoVo">
+		SELECT  bcc.id,cci.bank_credit_card_id,cci.bank_id,b.bank_name,b.bank_logo,bcc.card_name,cci.card_feature,cci.card_logo,cci.card_look_number,
+		(SELECT COUNT(1) FROM user_concern_basic ucb WHERE ucb.concern_type = 1 AND ucb.concern_id = bcc.id) concren_total
+		FROM credit_card_info cci
+		LEFT JOIN bank b ON cci.bank_id =  b.id
+		LEFT JOIN bank_credit_card bcc ON cci.bank_credit_card_id = bcc.id
+		where cci.status = 1
+		ORDER BY concren_total DESC LIMIT 3
+	</select>
+
+	<select id="findCreditCardInfoHotVoList" resultMap="CreditCardInfoHotVo">
+		SELECT bcc.id,cci.bank_credit_card_id,cci.bank_id,b.bank_name,b.bank_logo,bcc.card_name,cci.card_feature,cci.card_logo,cci.card_look_number ,
+		(SELECT COUNT(1) FROM credit_card_apply_data ccad WHERE ccad.credit_card_id = cci.bank_credit_card_id)credit_card_apply_number
+		FROM credit_card_info cci
+		LEFT JOIN bank b ON cci.bank_id =  b.id
+		LEFT JOIN bank_credit_card bcc ON cci.bank_credit_card_id = bcc.id
+		WHERE cci.status = 1
+		ORDER BY credit_card_apply_number DESC LIMIT 2
+	</select>
+
+	<select id="findCreditCardInfoPage" resultMap="CreditCardInfoHotVo">
+		SELECT bcc.id,cci.bank_credit_card_id,cci.bank_id,b.bank_name,b.bank_logo,bcc.card_name,cci.card_feature,cci.card_logo,cci.card_look_number FROM credit_card_info cci
+		LEFT JOIN bank b ON cci.bank_id =  b.id
+		LEFT JOIN bank_credit_card bcc ON cci.bank_credit_card_id = bcc.id
+		WHERE cci.status = 1
+		ORDER BY cci.card_look_number DESC
+	</select>
+
+	<select id="findBankCreditCardListPage" resultMap="CreditCardInfoHotVo">
+		SELECT bcc.id,cci.bank_credit_card_id,cci.bank_id,b.bank_name,b.bank_logo,bcc.card_name,cci.card_feature,cci.card_logo,cci.card_look_number
+		FROM bank b
+		left join credit_card_info cci ON cci.bank_id =  b.id
+		LEFT JOIN bank_credit_card bcc ON cci.bank_credit_card_id = bcc.id
+		WHERE b.id=#{id} and cci.status = 1
+		ORDER BY cci.card_look_number DESC
+	</select>
+
+	<select id="findCreditCardDetailVo" resultMap="CreditCardDetailVo" parameterType="com.card.inteface.vo.QueryCreditCardVo">
+		SELECT bcc.id,cci.card_logo,b.id bank_id ,b.bank_name,bcc.card_name,cci.card_feature,cci.card_label,cci.card_currency,cci.card_hairpin_organi,cci.free_interest_rule,cci.card_leval,
+		cci.integral_rule,cci.apply_condition,cci.first_brush_ceremony,cci.card_privilege,cci.opr_process,cci.card_choose_label,cci.credit_characters,cci.free_interest_period,
+		(SELECT ucb.status FROM user_concern_basic ucb WHERE bcc.id = ucb.concern_id AND ucb.concern_type = 1 and status = 1 and ucb.user_id = #{userId}) user_concern_status,
+		cci.open_credit_card_url
+		FROM credit_card_info cci
+		LEFT JOIN bank b ON cci.bank_id =  b.id
+		LEFT JOIN bank_credit_card bcc ON cci.bank_credit_card_id = bcc.id
+		WHERE bcc.id =#{id}
+		ORDER BY cci.card_look_number DESC
+	</select>
+</mapper>

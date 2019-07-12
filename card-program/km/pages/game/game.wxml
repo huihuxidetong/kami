@@ -1,0 +1,24 @@
+<!--pages/game/game.wxml-->
+<!-- <view wx:for="{{gamelist}}" wx:for-item="item" wx:key="*this">
+  <text class="hot-title">和您相关活动</text>
+   <view class="gamedetail" >
+     <image class="gameimage" src='{{imgDomain+item.cardLogo}}'></image>
+     <text class="cardtitle cardmargin">{{item.activityName}}</text>
+     <text class="carddes">{{item.activityTimeStart}}-{{item.activityTimeEnd}} | {{item.activityPosition}}</text>
+    </view>
+</view> -->
+<view>
+  <text class="hot-title" wx:if="{{platList!=null&&platList.length>0}}">平台活动</text>
+   <view class="gamedetail" bindtap='godetail' wx:for="{{platList}}" wx:for-item="item" wx:key="*this" data-id='{{item.id}}' >
+     <image class="gameimage" src='{{imgDomain+item.activityImageUrl}}'></image>
+     <text class="cardtitle cardmargin">{{item.activityName}}</text>
+     <text class="carddes">{{item.activityTimeStart}}-{{item.activityTimeEnd}} | {{item.activityPosition}}</text>
+    </view>
+     <text class="hot-title" wx:if="{{gameList!=null&&gameList.length>0}}">其他活动</text>
+   <view class="gamedetail" bindtap='godetail' wx:for="{{gameList}}" wx:for-item="item" wx:key="*this" data-id='{{item.id}}' >
+      <image class="gameimage" src='{{imgDomain+item.activityImageUrl}}'></image>
+     <text class="cardtitle cardmargin">{{item.activityName}}</text>
+     <text class="carddes">{{item.activityTimeStart}}-{{item.activityTimeEnd}} | {{item.activityPosition}}</text>
+    </view>
+</view>
+ 

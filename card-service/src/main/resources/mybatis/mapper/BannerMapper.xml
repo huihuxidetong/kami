@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="BannerMapper">
+	<resultMap id="BaseResultMap" type="com.card.inteface.entity.Banner">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="banner_name" property="bannerName" jdbcType="VARCHAR" />
+		<result column="banner_image" property="bannerImage" jdbcType="VARCHAR" />
+		<result column="sort" property="sort" jdbcType="INTEGER" />
+		<result column="create_user_id" property="createUserId" jdbcType="INTEGER" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_user_id" property="updateUserId" jdbcType="INTEGER" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="banner_url" property="bannerUrl" jdbcType="VARCHAR" />
+
+	</resultMap>
+
+	<resultMap id="BannerVo" type="com.card.inteface.vo.BannerVo">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="banner_name" property="bannerName" jdbcType="VARCHAR" />
+		<result column="banner_image" property="bannerImage" jdbcType="VARCHAR" />
+		<result column="sort" property="sort" jdbcType="INTEGER" />
+		<result column="banner_url" property="bannerUrl" jdbcType="VARCHAR" />
+		<result column="banner_type" property="bannerType" jdbcType="INTEGER" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		id,
+		banner_name,
+		banner_image,
+		sort,
+		create_user_id,
+		create_time,
+		update_user_id,
+		update_time,
+		banner_url
+	</sql>
+	
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from banner
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+		id = #{id,jdbcType=INTEGER}
+		</trim>
+	</select>
+	
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from banner
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+		id = #{id,jdbcType=INTEGER}
+		</trim>
+	</delete>
+	
+	<insert id="insertSelective" parameterType="com.card.inteface.entity.Banner">
+		insert into banner
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="null != id">
+				id,
+			</if>
+			<if test="null != bannerName">
+				banner_name,
+			</if>
+			<if test="null != bannerImage">
+				banner_image,
+			</if>
+			<if test="null != sort">
+				sort,
+			</if>
+			<if test="null != createUserId">
+				create_user_id,
+			</if>
+			<if test="null != createTime">
+				create_time,
+			</if>
+			<if test="null != updateUserId">
+				update_user_id,
+			</if>
+			<if test="null != updateTime">
+				update_time,
+			</if>
+			<if test="null != bannerUrl">
+				banner_url,
+			</if>
+
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="null != id">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="null != bannerName">
+				#{bannerName,jdbcType=VARCHAR},
+			</if>
+			<if test="null != bannerImage">
+				#{bannerImage,jdbcType=VARCHAR},
+			</if>
+			<if test="null != sort">
+				#{sort,jdbcType=INTEGER},
+			</if>
+			<if test="null != createUserId">
+				#{createUserId,jdbcType=INTEGER},
+			</if>
+			<if test="null != createTime">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="null != updateUserId">
+				#{updateUserId,jdbcType=INTEGER},
+			</if>
+			<if test="null != updateTime">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="null != bannerUrl">
+				#{bannerUrl,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="com.card.inteface.entity.Banner">
+		update banner
+		<set>
+			<if test="null != id">
+				id = #{id,jdbcType=INTEGER},
+			</if>
+			<if test="null != bannerName">
+				banner_name = #{bannerName,jdbcType=VARCHAR},
+			</if>
+			<if test="null != bannerImage">
+				banner_image = #{bannerImage,jdbcType=VARCHAR},
+			</if>
+			<if test="null != sort">
+				sort = #{sort,jdbcType=INTEGER},
+			</if>
+			<if test="null != createUserId">
+				create_user_id = #{createUserId,jdbcType=INTEGER},
+			</if>
+			<if test="null != createTime">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="null != updateUserId">
+				update_user_id = #{updateUserId,jdbcType=INTEGER},
+			</if>
+			<if test="null != updateTime">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="null != bannerUrl">
+				banner_url = #{updateTime,jdbcType=VARCHAR},
+			</if>
+
+		</set>
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+		id = #{id,jdbcType=INTEGER}
+		</trim>
+	</update>
+
+	<select id="findIndexBannerVo" resultMap="BannerVo">
+		select id,banner_name,banner_image,sort,banner_url,banner_type
+		from banner
+		order by sort asc
+	</select>
+</mapper>

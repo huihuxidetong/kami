@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <dubbo:application name="card-service-impl" owner="zzh" organization="com.card"/>
+    <dubbo:provider serialization="kryo" codec="dubbo" server="netty" client="netty" threadpool="cached" connections="1" loadbalance="consistenthash" cluster="failfast" delay="-1" timeout="1000000" />
+    <dubbo:registry protocol="zookeeper" address="${dubbo.registry.address}"/>
+    <!--<dubbo:monitor protocol="registry"/>-->
+    <dubbo:protocol name="dubbo" serialization="kryo" port="20884"/>
+    <dubbo:service interface="com.card.inteface.service.UserService" ref="userService"  protocol="dubbo" delay="-1" version="1.0" timeout="1000000"/>
+    <bean id="userService" class="com.card.service.impl.UserServiceImpl" />
+    <dubbo:service interface="com.card.inteface.service.CreditCardInfoService" ref="creditCardInfoService"  protocol="dubbo" delay="-1" version="1.0" timeout="1000000"/>
+    <bean id="creditCardInfoService" class="com.card.service.impl.CreditCardInfoServiceImpl" />
+    <dubbo:service interface="com.card.inteface.service.BankService" ref="bankService"  protocol="dubbo" delay="-1" version="1.0" timeout="1000000"/>
+    <bean id="bankService" class="com.card.service.impl.BankServiceImpl" />
+    <dubbo:service interface="com.card.inteface.service.ActivityService" ref="activityService"  protocol="dubbo" delay="-1" version="1.0" timeout="1000000"/>
+    <bean id="activityService" class="com.card.service.impl.ActivityServiceImpl" />
+    <dubbo:service interface="com.card.inteface.service.BannerService" ref="bannerService"  protocol="dubbo" delay="-1" version="1.0" timeout="1000000"/>
+    <bean id="bannerService" class="com.card.service.impl.BannerServiceImpl" />
+    <dubbo:service interface="com.card.inteface.service.ActivityApplyService" ref="activityApplyService"  protocol="dubbo" delay="-1" version="1.0" timeout="1000000"/>
+    <bean id="activityApplyService" class="com.card.service.impl.ActivityApplyServiceImpl" />
+    <dubbo:service interface="com.card.inteface.service.CommentService" ref="commentService"  protocol="dubbo" delay="-1" version="1.0" timeout="1000000"/>
+    <bean id="commentService" class="com.card.service.impl.CommentServiceImpl" />
+    <dubbo:service interface="com.card.inteface.service.CommentReplyService" ref="commentReplyService"  protocol="dubbo" delay="-1" version="1.0" timeout="1000000"/>
+    <bean id="commentReplyService" class="com.card.service.impl.CommentReplyServiceImpl" />
+    <dubbo:service interface="com.card.inteface.service.CreditCardConcernService" ref="creditCardConcernService"  protocol="dubbo" delay="-1" version="1.0" timeout="1000000"/>
+    <bean id="creditCardConcernService" class="com.card.service.impl.CreditCardConcernServiceImpl" />
+    <dubbo:service interface="com.card.inteface.service.CreditCardQuestionService" ref="ceditCardQuestionService"  protocol="dubbo" delay="-1" version="1.0" timeout="1000000"/>
+    <bean id="ceditCardQuestionService" class="com.card.service.impl.CreditCardQuestionServiceImpl" />
+    <dubbo:service interface="com.card.inteface.service.UserCreditCardService" ref="userCreditCardService"  protocol="dubbo" delay="-1" version="1.0" timeout="1000000"/>
+    <bean id="userCreditCardService" class="com.card.service.impl.UserCreditCardServiceImpl" />
+    <dubbo:service interface="com.card.inteface.service.CreditCardCostService" ref="creditCardCostService"  protocol="dubbo" delay="-1" version="1.0" timeout="1000000"/>
+    <bean id="creditCardCostService" class="com.card.service.impl.CreditCardCostServiceImpl" />
+    <dubbo:service interface="com.card.inteface.service.BankCreditCardService" ref="bankCreditCardService"  protocol="dubbo" delay="-1" version="1.0" timeout="1000000"/>
+    <bean id="bankCreditCardService" class="com.card.service.impl.BankCreditCardServiceImpl" />
+    <dubbo:service interface="com.card.inteface.service.UserConcernBasicService" ref="userConcernBasicService"  protocol="dubbo" delay="-1" version="1.0" timeout="1000000"/>
+    <bean id="userConcernBasicService" class="com.card.service.impl.UserConcernBasicServiceImpl" />
+    <dubbo:service interface="com.card.inteface.service.ChannelDataService" ref="channelDataService"  protocol="dubbo" delay="-1" version="1.0" timeout="1000000"/>
+    <bean id="channelDataService" class="com.card.service.impl.ChannelDataServiceImpl" />
+    <dubbo:service interface="com.card.inteface.service.CreditCardApplyDataService" ref="creditCardApplyDataService"  protocol="dubbo" delay="-1" version="1.0" timeout="1000000"/>
+    <bean id="creditCardApplyDataService" class="com.card.service.impl.CreditCardApplyDataServiceImpl" />
+</beans>

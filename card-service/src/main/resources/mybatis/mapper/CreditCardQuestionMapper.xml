@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="CreditCardQuestionMapper">
+	<resultMap id="BaseResultMap" type="com.card.inteface.entity.CreditCardQuestion">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="credit_card_id" property="creditCardId" jdbcType="INTEGER" />
+		<result column="question" property="question" jdbcType="VARCHAR" />
+		<result column="answer" property="answer" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		id,
+		credit_card_id,
+		question,
+		answer
+	</sql>
+	
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from credit_card_question
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+		id = #{id,jdbcType=INTEGER}
+		</trim>
+	</select>
+	
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from credit_card_question
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+		id = #{id,jdbcType=INTEGER}
+		</trim>
+	</delete>
+	
+	<insert id="insertSelective" parameterType="com.card.inteface.entity.CreditCardQuestion">
+		insert into credit_card_question
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="null != id">
+				id,
+			</if>
+			<if test="null != creditCardId">
+				credit_card_id,
+			</if>
+			<if test="null != question">
+				question,
+			</if>
+			<if test="null != answer">
+				answer,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="null != id">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="null != creditCardId">
+				#{creditCardId,jdbcType=INTEGER},
+			</if>
+			<if test="null != question">
+				#{question,jdbcType=VARCHAR},
+			</if>
+			<if test="null != answer">
+				#{answer,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="com.card.inteface.entity.CreditCardQuestion">
+		update credit_card_question
+		<set>
+			<if test="null != id">
+				id = #{id,jdbcType=INTEGER},
+			</if>
+			<if test="null != creditCardId">
+				credit_card_id = #{creditCardId,jdbcType=INTEGER},
+			</if>
+			<if test="null != question">
+				question = #{question,jdbcType=VARCHAR},
+			</if>
+			<if test="null != answer">
+				answer = #{answer,jdbcType=VARCHAR},
+			</if>
+		</set>
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+		id = #{id,jdbcType=INTEGER}
+		</trim>
+	</update>
+
+	<select id="findcreditCardQuestionByCreditCardId" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from credit_card_question
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			credit_card_id = #{creditCardId,jdbcType=INTEGER}
+		</trim>
+	</select>
+</mapper>

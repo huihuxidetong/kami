@@ -1,0 +1,14 @@
+.weui-textarea{width:100%;font-size:30rpx;color:#959baa;padding:30rpx 0;position:relative;}
+.number{position:absolute;left:90%;color:#666;font-size:24rpx;top:450rpx;}
+.holderText{font-size:30rpx;color:#ced3e0;}
+.commit{
+
+  height:49px;
+  line-height:49px;
+  font-size:32rpx;
+  width:90%;
+  text-align:center;
+  border-radius:60rpx;
+  margin:40rpx 0 0 5%;
+  
+}

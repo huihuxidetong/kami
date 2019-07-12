@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ActivityApplyMapper">
+	<resultMap id="BaseResultMap" type="com.card.inteface.entity.ActivityApply">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="activity_id" property="activityId" jdbcType="INTEGER" />
+		<result column="join_user_name" property="joinUserName" jdbcType="VARCHAR" />
+		<result column="join_user_mobile" property="joinUserMobile" jdbcType="VARCHAR" />
+		<result column="join_user_credit_card" property="joinUserCreditCard" jdbcType="VARCHAR" />
+		<result column="create_user_id" property="createUserId" jdbcType="INTEGER" />
+		<result column="create_user_name" property="createUserName" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		id,
+		activity_id,
+		join_user_name,
+		join_user_mobile,
+		join_user_credit_card,
+		create_user_id,
+		create_user_name,
+		create_time
+	</sql>
+	
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from activity_apply
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+		int = #{int,jdbcType=INTEGER}
+		</trim>
+	</select>
+	
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from activity_apply
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+		int = #{int,jdbcType=INTEGER}
+		</trim>
+	</delete>
+	
+	<insert id="insertSelective" parameterType="com.card.inteface.entity.ActivityApply">
+		insert into activity_apply
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="null != id">
+				id,
+			</if>
+			<if test="null != activityId">
+				activity_id,
+			</if>
+			<if test="null != joinUserName">
+				join_user_name,
+			</if>
+			<if test="null != joinUserMobile">
+				join_user_mobile,
+			</if>
+			<if test="null != joinUserCreditCard">
+				join_user_credit_card,
+			</if>
+			<if test="null != createUserId">
+				create_user_id,
+			</if>
+			<if test="null != createUserName">
+				create_user_name,
+			</if>
+			<if test="null != createTime">
+				create_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="null != id">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="null != activityId">
+				#{activityId,jdbcType=INTEGER},
+			</if>
+			<if test="null != joinUserName">
+				#{joinUserName,jdbcType=VARCHAR},
+			</if>
+			<if test="null != joinUserMobile">
+				#{joinUserMobile,jdbcType=VARCHAR},
+			</if>
+			<if test="null != joinUserCreditCard">
+				#{joinUserCreditCard,jdbcType=VARCHAR},
+			</if>
+			<if test="null != createUserId">
+				#{createUserId,jdbcType=INTEGER},
+			</if>
+			<if test="null != createUserName">
+				#{createUserName,jdbcType=VARCHAR},
+			</if>
+			<if test="null != createTime">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="com.card.inteface.entity.ActivityApply">
+		update activity_apply
+		<set>
+			<if test="null != id">
+				id = #{id,jdbcType=INTEGER},
+			</if>
+			<if test="null != activityId">
+				activity_id = #{activityId,jdbcType=INTEGER},
+			</if>
+			<if test="null != joinUserName">
+				join_user_name = #{joinUserName,jdbcType=VARCHAR},
+			</if>
+			<if test="null != joinUserMobile">
+				join_user_mobile = #{joinUserMobile,jdbcType=VARCHAR},
+			</if>
+			<if test="null != joinUserCreditCard">
+				join_user_credit_card = #{joinUserCreditCard,jdbcType=VARCHAR},
+			</if>
+			<if test="null != createUserId">
+				create_user_id = #{createUserId,jdbcType=INTEGER},
+			</if>
+			<if test="null != createUserName">
+				create_user_name = #{createUserName,jdbcType=VARCHAR},
+			</if>
+			<if test="null != createTime">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+		int = #{int,jdbcType=INTEGER}
+		</trim>
+	</update>
+</mapper>

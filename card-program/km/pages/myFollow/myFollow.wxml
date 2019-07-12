@@ -1,0 +1,47 @@
+
+ <view style="display:flex;flex-direction:row;height:88rpx;line-height:88rpx;background:#fff;padding:0 30rpx;position:fixed;top:0;left:0;width:100%;z-index:1000">
+  <view style='flex:1;text-align:center;background:#fff;'>
+    <text class="tab-item {{currentTab==0?'selected':'unselected'}}" data-current="0" bindtap="switch">信用卡</text>
+  </view>
+  <view style='flex:1;text-align: center;background:#fff;'>
+    <text class="tab-item {{currentTab==1?'selected':'unselected'}}" data-current="1" bindtap="switch">活动</text>
+  </view>      
+</view>
+
+<swiper bindchange='onSwiperChanged' current="{{currentTab}}" style="height:1200rpx;margin-top:88rpx;">
+    <swiper-item>
+        <scroll-view style="height:1200rpx;background: #f9fbfe;">
+    <view class="cardlist" wx:for="{{cardList}}" wx:for-item="item" wx:key="*this" wx:if="{{cardList!=null&&cardList.length > 0}}"
+    bindtap="goCardDetail" data-id="{{item.id}}">
+      <image class="cardimage" src='{{imgDomain+item.cardLogo}}'></image>
+      <view class="carddetail">
+        <text class="cardtitle gamemargin">{{item.bankName}}{{item.cardName}}</text>
+        <text class="carddes cardmargin">{{item.cardFeature}}</text>
+        <text class="carddes">已有<text style='color:#ff5600;'>{{item.cardLookNumber}}</text>人查看</text>   
+      </view>
+    </view>
+            <!-- 暂无关注信用卡 -->
+  <view  wx:if="{{cardList==null||cardList.length == 0}}" style='text-align:center;width:100%'>
+    <image style='width:275rpx;height:198rpx;margin:255rpx 0 25rpx 0' src='../../images/icon/no_follow.png'></image>
+    <view style='font-size:26rpx;color:#b4bacc'>暂无相关内容</view>
+  </view>
+        </scroll-view>
+       
+    </swiper-item>
+    <swiper-item >
+        <scroll-view style="height:1200rpx;background: #f9fbfe;" >
+        <view class="gamedetail" bindtap='goGameDetail' wx:for="{{gameList}}" wx:for-item="item" wx:key="*this" data-id='{{item.id}}' style='margin-top:30rpx' >
+          <image class="gameimage" src='{{imgDomain+item.activityImageUrl}}'></image>
+          <text class="cardtitle cardmargin">{{item.activityName}}</text>
+          <text class="carddes">{{item.activityTimeStart}}-{{item.activityTimeEnd}} | {{item.activityPosition}}</text>
+        </view>
+            <!-- 暂无关注活动 -->
+  <view  wx:if="{{gameList==null||gameList.length == 0}}" style='text-align:center;width:100%'>
+    <image style='width:275rpx;height:198rpx;margin:255rpx 0 25rpx 0' src='../../images/icon/no_follow.png'></image>
+    <view style='font-size:26rpx;color:#b4bacc'>暂无相关内容</view>
+  </view>
+        </scroll-view>
+    </swiper-item>
+</swiper> 
+ <view class="loading" wx:if="{{searchLoading}}">加载中</view>
+    <view class="loading complete" wx:if="{{searchLoadingComplete}}">已加载全部</view>

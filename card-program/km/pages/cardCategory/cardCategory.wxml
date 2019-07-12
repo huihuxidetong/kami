@@ -1,0 +1,12 @@
+ <view class="search">
+    <input type="text" placeholder="搜索" class="searchInput" bindinput='iputcardname'/>
+    <image src="../../images/icon/search.png" class="searchImg" draggable="false"/>
+  </view>
+  <view style="background:#edeff2;height:2rpx"></view>
+  <view style='margin-left:30rpx;height:108rpx;line-height:108rpx;border-bottom:2rpx solid #edeff2' wx:for="{{banklist}}"  wx:for-item="item" bindtap='selectedConfirm' data-value = "{{item.cardName}}" data-id="{{item.id}}">
+    <text class='cardtitle'>{{item.cardName}}</text>
+  </view>
+  <view  wx:if="{{banklist==null||banklist.length == 0}}" style='text-align:center;width:100%'>
+  <image style='width:275rpx;height:198rpx;margin:255rpx 0 25rpx 0' src='../../images/icon/no_result.png'></image>
+  <view style='font-size:26rpx;color:#b4bacc'>未找到相应信用卡</view>
+  </view>

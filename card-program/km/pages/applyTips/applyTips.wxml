@@ -1,0 +1,7 @@
+ <view style='text-align:center'>
+  <image src="../../images/icon/apply_tips.png" style="width:489rpx;height:832rpx;margin-top:20rpx"></image>
+  <view style='font-size:26rpx;color:#b4bacc;margin:30rpx 0 5rpx 0'>点击下方<text style='color:#ff5600'>【去申请】</text></view>
+  <view style='font-size:26rpx;color:#b4bacc;margin-bottom:54rpx'>在客服对话框中回复<text style='color:#ff5600;font-size:40rpx;  font-weight:bold;'> 1 </text>完成申请</view>
+  <button class='mybutton' bindtap="applyCard" open-type='contact'>去申请</button>
+ </view>
+ 

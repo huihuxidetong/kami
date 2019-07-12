@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="UserMobileBasicMapper">
+	<resultMap id="BaseResultMap" type="com.card.inteface.entity.UserMobileBasic">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="mobile_brand" property="mobileBrand" jdbcType="VARCHAR" />
+		<result column="mobile_model" property="mobileModel" jdbcType="VARCHAR" />
+		<result column="mobile_system" property="mobileSystem" jdbcType="VARCHAR" />
+		<result column="mobile_dpr_wide" property="mobileDprWide" jdbcType="VARCHAR" />
+		<result column="mobile_dpr_high" property="mobileDprHigh" jdbcType="VARCHAR" />
+		<result column="screen_wide" property="screenWide" jdbcType="VARCHAR" />
+		<result column="screen_high" property="screenHigh" jdbcType="VARCHAR" />
+		<result column="window_use_high" property="windowUseHigh" jdbcType="VARCHAR" />
+		<result column="window_use_width" property="windowUseWidth" jdbcType="VARCHAR" />
+		<result column="status_bar_high" property="statusBarHigh" jdbcType="VARCHAR" />
+		<result column="wechar_language" property="wecharLanguage" jdbcType="VARCHAR" />
+		<result column="wechar_version" property="wecharVersion" jdbcType="VARCHAR" />
+		<result column="client_platform" property="clientPlatform" jdbcType="VARCHAR" />
+		<result column="font_size" property="fontSize" jdbcType="VARCHAR" />
+		<result column="client_platform_version" property="clientPlatformVersion" jdbcType="VARCHAR" />
+		<result column="performance_leval" property="performanceLeval" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		id,
+		user_id,
+		mobile_brand,
+		mobile_model,
+		mobile_system,
+		mobile_dpr_wide,
+		mobile_dpr_high,
+		screen_wide,
+		screen_high,
+		window_use_high,
+		window_use_width,
+		status_bar_high,
+		wechar_language,
+		wechar_version,
+		client_platform,
+		font_size,
+		client_platform_version,
+		performance_leval
+	</sql>
+	
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from user_mobile_basic
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+		id = #{id,jdbcType=INTEGER}
+		</trim>
+	</select>
+	
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from user_mobile_basic
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+		id = #{id,jdbcType=INTEGER}
+		</trim>
+	</delete>
+	
+	<insert id="insertSelective" parameterType="com.card.inteface.entity.UserMobileBasic">
+		insert into user_mobile_basic
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="null != id">
+				id,
+			</if>
+			<if test="null != userId">
+				user_id,
+			</if>
+			<if test="null != mobileBrand">
+				mobile_brand,
+			</if>
+			<if test="null != mobileModel">
+				mobile_model,
+			</if>
+			<if test="null != mobileSystem">
+				mobile_system,
+			</if>
+			<if test="null != mobileDprWide">
+				mobile_dpr_wide,
+			</if>
+			<if test="null != mobileDprHigh">
+				mobile_dpr_high,
+			</if>
+			<if test="null != screenWide">
+				screen_wide,
+			</if>
+			<if test="null != screenHigh">
+				screen_high,
+			</if>
+			<if test="null != windowUseHigh">
+				window_use_high,
+			</if>
+			<if test="null != windowUseWidth">
+				window_use_width,
+			</if>
+			<if test="null != statusBarHigh">
+				status_bar_high,
+			</if>
+			<if test="null != wecharLanguage">
+				wechar_language,
+			</if>
+			<if test="null != wecharVersion">
+				wechar_version,
+			</if>
+			<if test="null != clientPlatform">
+				client_platform,
+			</if>
+			<if test="null != fontSize">
+				font_size,
+			</if>
+			<if test="null != clientPlatformVersion">
+				client_platform_version,
+			</if>
+			<if test="null != performanceLeval">
+				performance_leval,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="null != id">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="null != userId">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="null != mobileBrand">
+				#{mobileBrand,jdbcType=VARCHAR},
+			</if>
+			<if test="null != mobileModel">
+				#{mobileModel,jdbcType=VARCHAR},
+			</if>
+			<if test="null != mobileSystem">
+				#{mobileSystem,jdbcType=VARCHAR},
+			</if>
+			<if test="null != mobileDprWide">
+				#{mobileDprWide,jdbcType=VARCHAR},
+			</if>
+			<if test="null != mobileDprHigh">
+				#{mobileDprHigh,jdbcType=VARCHAR},
+			</if>
+			<if test="null != screenWide">
+				#{screenWide,jdbcType=VARCHAR},
+			</if>
+			<if test="null != screenHigh">
+				#{screenHigh,jdbcType=VARCHAR},
+			</if>
+			<if test="null != windowUseHigh">
+				#{windowUseHigh,jdbcType=VARCHAR},
+			</if>
+			<if test="null != windowUseWidth">
+				#{windowUseWidth,jdbcType=VARCHAR},
+			</if>
+			<if test="null != statusBarHigh">
+				#{statusBarHigh,jdbcType=VARCHAR},
+			</if>
+			<if test="null != wecharLanguage">
+				#{wecharLanguage,jdbcType=VARCHAR},
+			</if>
+			<if test="null != wecharVersion">
+				#{wecharVersion,jdbcType=VARCHAR},
+			</if>
+			<if test="null != clientPlatform">
+				#{clientPlatform,jdbcType=VARCHAR},
+			</if>
+			<if test="null != fontSize">
+				#{fontSize,jdbcType=VARCHAR},
+			</if>
+			<if test="null != clientPlatformVersion">
+				#{clientPlatformVersion,jdbcType=VARCHAR},
+			</if>
+			<if test="null != performanceLeval">
+				#{performanceLeval,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="com.card.inteface.entity.UserMobileBasic">
+		update user_mobile_basic
+		<set>
+			<if test="null != id">
+				id = #{id,jdbcType=INTEGER},
+			</if>
+			<if test="null != userId">
+				user_id = #{userId,jdbcType=INTEGER},
+			</if>
+			<if test="null != mobileBrand">
+				mobile_brand = #{mobileBrand,jdbcType=VARCHAR},
+			</if>
+			<if test="null != mobileModel">
+				mobile_model = #{mobileModel,jdbcType=VARCHAR},
+			</if>
+			<if test="null != mobileSystem">
+				mobile_system = #{mobileSystem,jdbcType=VARCHAR},
+			</if>
+			<if test="null != mobileDprWide">
+				mobile_dpr_wide = #{mobileDprWide,jdbcType=VARCHAR},
+			</if>
+			<if test="null != mobileDprHigh">
+				mobile_dpr_high = #{mobileDprHigh,jdbcType=VARCHAR},
+			</if>
+			<if test="null != screenWide">
+				screen_wide = #{screenWide,jdbcType=VARCHAR},
+			</if>
+			<if test="null != screenHigh">
+				screen_high = #{screenHigh,jdbcType=VARCHAR},
+			</if>
+			<if test="null != windowUseHigh">
+				window_use_high = #{windowUseHigh,jdbcType=VARCHAR},
+			</if>
+			<if test="null != windowUseWidth">
+				window_use_width = #{windowUseWidth,jdbcType=VARCHAR},
+			</if>
+			<if test="null != statusBarHigh">
+				status_bar_high = #{statusBarHigh,jdbcType=VARCHAR},
+			</if>
+			<if test="null != wecharLanguage">
+				wechar_language = #{wecharLanguage,jdbcType=VARCHAR},
+			</if>
+			<if test="null != wecharVersion">
+				wechar_version = #{wecharVersion,jdbcType=VARCHAR},
+			</if>
+			<if test="null != clientPlatform">
+				client_platform = #{clientPlatform,jdbcType=VARCHAR},
+			</if>
+			<if test="null != fontSize">
+				font_size = #{fontSize,jdbcType=VARCHAR},
+			</if>
+			<if test="null != clientPlatformVersion">
+				client_platform_version = #{clientPlatformVersion,jdbcType=VARCHAR},
+			</if>
+			<if test="null != performanceLeval">
+				performance_leval = #{performanceLeval,jdbcType=VARCHAR},
+			</if>
+		</set>
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+		id = #{id,jdbcType=INTEGER}
+		</trim>
+	</update>
+</mapper>

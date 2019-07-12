@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="BankCreditCardMapper">
+	<resultMap id="BaseResultMap" type="com.card.inteface.entity.BankCreditCard">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="bank_id" property="bankId" jdbcType="INTEGER" />
+		<result column="card_name" property="cardName" jdbcType="VARCHAR" />
+		<result column="create_user_id" property="createUserId" jdbcType="INTEGER" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_user_id" property="updateUserId" jdbcType="INTEGER" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+	</resultMap>
+
+	<resultMap id="CreditCardInfoQueryVo" type="com.card.inteface.vo.CreditCardInfoQueryVo">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="card_name" property="cardName" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		id,
+		bank_id,
+		card_name,
+		create_user_id,
+		create_time,
+		update_user_id,
+		update_time,
+		status
+	</sql>
+	
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from bank_credit_card
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+		id = #{id,jdbcType=INTEGER}
+		</trim>
+	</select>
+	
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from bank_credit_card
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+		id = #{id,jdbcType=INTEGER}
+		</trim>
+	</delete>
+	
+	<insert id="insertSelective" parameterType="com.card.inteface.entity.BankCreditCard">
+		insert into bank_credit_card
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="null != id">
+				id,
+			</if>
+			<if test="null != bankId">
+				bank_id,
+			</if>
+			<if test="null != cardName">
+				card_name,
+			</if>
+			<if test="null != createUserId">
+				create_user_id,
+			</if>
+			<if test="null != createTime">
+				create_time,
+			</if>
+			<if test="null != updateUserId">
+				update_user_id,
+			</if>
+			<if test="null != updateTime">
+				update_time,
+			</if>
+			<if test="null != status">
+				status,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="null != id">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="null != bankId">
+				#{bankId,jdbcType=INTEGER},
+			</if>
+			<if test="null != cardName">
+				#{cardName,jdbcType=VARCHAR},
+			</if>
+			<if test="null != createUserId">
+				#{createUserId,jdbcType=INTEGER},
+			</if>
+			<if test="null != createTime">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="null != updateUserId">
+				#{updateUserId,jdbcType=INTEGER},
+			</if>
+			<if test="null != updateTime">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="null != status">
+				#{status,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="com.card.inteface.entity.BankCreditCard">
+		update bank_credit_card
+		<set>
+			<if test="null != id">
+				id = #{id,jdbcType=INTEGER},
+			</if>
+			<if test="null != bankId">
+				bank_id = #{bankId,jdbcType=INTEGER},
+			</if>
+			<if test="null != cardName">
+				card_name = #{cardName,jdbcType=VARCHAR},
+			</if>
+			<if test="null != createUserId">
+				create_user_id = #{createUserId,jdbcType=INTEGER},
+			</if>
+			<if test="null != createTime">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="null != updateUserId">
+				update_user_id = #{updateUserId,jdbcType=INTEGER},
+			</if>
+			<if test="null != updateTime">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="null != status">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+		</set>
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+		id = #{id,jdbcType=INTEGER}
+		</trim>
+	</update>
+
+	<select id="queryCreditCardList" resultMap="CreditCardInfoQueryVo" parameterType="com.card.inteface.entity.BankCreditCard">
+		SELECT bcc.id,bcc.card_name FROM bank_credit_card bcc WHERE bcc.bank_id = #{bankId} and bcc.card_name like CONCAT(CONCAT('%', #{cardName}),'%')
+	</select>
+</mapper>

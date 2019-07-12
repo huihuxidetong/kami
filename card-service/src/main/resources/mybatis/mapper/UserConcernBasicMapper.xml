@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="UserConcernBasicMapper">
+	<resultMap id="BaseResultMap" type="com.card.inteface.entity.UserConcernBasic">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="concern_type" property="concernType" jdbcType="INTEGER" />
+		<result column="concern_id" property="concernId" jdbcType="INTEGER" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+	</resultMap>
+
+	<resultMap id="CreditCardInfoHotVo" type="com.card.inteface.vo.CreditCardInfoHotVo">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="card_logo" property="cardLogo" jdbcType="VARCHAR" />
+		<result column="bank_id" property="bankId" jdbcType="INTEGER" />
+		<result column="bank_credit_card_id" property="bankCreditCardId" jdbcType="INTEGER" />
+		<result column="card_feature" property="cardFeature" jdbcType="VARCHAR" />
+		<result column="card_look_number" property="cardLookNumber" jdbcType="INTEGER" />
+		<result column="bank_name" property="bankName" jdbcType="VARCHAR" />
+		<result column="card_name" property="cardName" jdbcType="VARCHAR" />
+		<result column="bank_logo" property="bankLogo" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<resultMap id="ActivityVo" type="com.card.inteface.vo.ActivityIndexVo">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="bank_id" property="bankId" jdbcType="INTEGER" />
+		<result column="bank_credit_card_id" property="bankCreditCardId" jdbcType="INTEGER" />
+		<result column="activity_name" property="activityName" jdbcType="VARCHAR" />
+		<result column="activity_time_start" property="activityTimeStart" jdbcType="TIMESTAMP" />
+		<result column="activity_time_end" property="activityTimeEnd" jdbcType="TIMESTAMP" />
+		<result column="activity_position" property="activityPosition" jdbcType="VARCHAR" />
+		<result column="activity_image_url" property="activityImageUrl" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<resultMap id="CreditCardConcernVo" type="com.card.inteface.vo.CreditCardConcernVo">
+		<result column="credit_card_id" property="creditCardId" jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="user_portrait" property="userPortrait" jdbcType="VARCHAR" />
+		<result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id,
+		user_id,
+		concern_type,
+		concern_id,
+		create_time
+	</sql>
+	
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from user_concern_basic
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+		id = #{id,jdbcType=INTEGER}
+		</trim>
+	</select>
+	
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from user_concern_basic
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+		id = #{id,jdbcType=INTEGER}
+		</trim>
+	</delete>
+	
+	<insert id="insertSelective" parameterType="com.card.inteface.entity.UserConcernBasic">
+		insert into user_concern_basic
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="null != id">
+				id,
+			</if>
+			<if test="null != userId">
+				user_id,
+			</if>
+			<if test="null != concernType">
+				concern_type,
+			</if>
+			<if test="null != concernId">
+				concern_id,
+			</if>
+			<if test="null != createTime">
+				create_time,
+			</if>
+			<if test="null != status">
+				status,
+			</if>
+
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="null != id">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="null != userId">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="null != concernType">
+				#{concernType,jdbcType=INTEGER},
+			</if>
+			<if test="null != concernId">
+				#{concernId,jdbcType=INTEGER},
+			</if>
+			<if test="null != createTime">
+				#{createTime},
+			</if>
+			<if test="null != status">
+				#{status},
+			</if>
+		</trim>
+	</insert>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="com.card.inteface.entity.UserConcernBasic">
+		update user_concern_basic
+		<set>
+			<if test="null != status">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+		</set>
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+		id = #{id,jdbcType=INTEGER}
+		</trim>
+	</update>
+
+	<select id="findUserConcernBasic4CreditCardPage" parameterType="com.card.inteface.entity.UserConcernBasic" resultMap="CreditCardInfoHotVo">
+		SELECT bcc.id,cci.bank_credit_card_id,cci.bank_id,b.bank_name,b.bank_logo,bcc.card_name,cci.card_feature,cci.card_logo,cci.card_look_number
+		FROM user_concern_basic ucb
+		LEFT JOIN credit_card_info cci ON ucb.concern_id = cci.bank_credit_card_id
+		LEFT JOIN bank b ON cci.bank_id =  b.id
+		LEFT JOIN bank_credit_card bcc ON cci.bank_credit_card_id = bcc.id
+		WHERE ucb.concern_type = #{concernType,jdbcType=INTEGER}
+		AND ucb.user_id = #{userId,jdbcType=INTEGER}
+		AND ucb.status = 1
+		ORDER BY ucb.create_time DESC
+	</select>
+
+	<select id="findUserConcernBasic4ActivityPage" parameterType="com.card.inteface.entity.UserConcernBasic" resultMap="ActivityVo">
+		SELECT a.activity_name,a.activity_time_start,a.activity_time_end,a.activity_position,a.id,a.bank_id,a.bank_credit_card_id,
+		(SELECT af.image_url FROM activity_file af WHERE af.activity_id = a.id LIMIT 1) activity_image_url
+		FROM `user_concern_basic` ucb
+		LEFT JOIN activity a ON ucb.`concern_id` = a.id
+		WHERE ucb.concern_type = #{concernType,jdbcType=INTEGER}
+		AND ucb.user_id = #{userId,jdbcType=INTEGER}
+		and ucb.status = 1
+		ORDER BY ucb.create_time DESC
+	</select>
+
+	<select id="findCreditCardConcernPortraitLimit" parameterType="java.lang.Integer" resultType="java.lang.String">
+		SELECT u.user_portrait FROM user_concern_basic ucb
+		INNER JOIN USER u ON ucb.user_id = u.id
+		WHERE ucb.concern_id = #{concernId}
+		AND ucb.concern_type = 1
+		AND ucb.status =1
+		LIMIT 5
+	</select>
+
+	<select id="findCreditCardConcernCount" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+		SELECT COUNT(1) FROM user_concern_basic ucb
+		WHERE ucb.concern_id = #{concernId}
+		AND ucb.concern_type = 1
+		AND ucb.status =1
+	</select>
+
+	<select id="findCreditCardConcernPage" parameterType="java.lang.Integer" resultMap="CreditCardConcernVo">
+		SELECT ucb.concern_id credit_card_id,u.id user_id,u.nick_name,u.user_portrait
+		FROM user_concern_basic ucb
+		INNER JOIN USER u ON ucb.user_id = u.id
+		WHERE ucb.concern_id = #{concernId}
+		AND ucb.concern_type = 1
+		AND ucb.status =1
+		ORDER BY ucb.create_time DESC
+	</select>
+
+	<select id="findUserConcernBasicByEntity" resultMap="BaseResultMap" parameterType="com.card.inteface.entity.UserConcernBasic">
+		select
+		<include refid="Base_Column_List" />
+		from user_concern_basic
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			1=1
+			<if test="null != id">
+				and id = #{id,jdbcType=INTEGER}
+			</if>
+			<if test="null != userId">
+				and user_id = #{userId,jdbcType=INTEGER}
+			</if>
+			<if test="null != concernType">
+				and concern_type = #{concernType,jdbcType=INTEGER}
+			</if>
+			<if test="null != concernId">
+				and concern_id = #{concernId,jdbcType=INTEGER}
+			</if>
+		</trim>
+	</select>
+</mapper>

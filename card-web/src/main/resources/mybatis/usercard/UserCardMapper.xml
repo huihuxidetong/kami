@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="UserCardMapper">
+	
+	<!--表名 -->
+	<sql id="tableName">
+		USER
+	</sql>
+	
+	<!-- 字段 -->
+	<sql id="Field">
+		id,
+		open_id,
+		user_integral,
+		user_portrait,
+		user_choose_lable,
+		user_custom_lable,
+		create_time,
+		update_user_id,
+		update_time,
+		nick_name
+	</sql>
+	
+	<!-- 字段值 -->
+	<sql id="FieldValue">
+		#{id},
+		#{open_id},
+		#{user_integral},
+		#{user_portrait},
+		#{user_choose_lable},
+		#{user_custom_lable},
+		#{create_time},
+		#{update_user_id},
+		#{update_time},
+		#{nick_name}
+	</sql>
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into
+		<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+			SELECT LAST_INSERT_ID() AS id
+		</selectKey>
+		<include refid="tableName"></include>
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="id != null and id != ''" >
+				id,
+			</if>
+			<if test="open_id != null and open_id != ''" >
+				open_id,
+			</if>
+			<if test="user_integral != null and user_integral != ''" >
+				user_integral,
+			</if>
+			<if test="user_portrait != null and user_portrait != ''" >
+				user_portrait,
+			</if>
+			<if test="user_choose_lable != null and user_choose_lable != ''" >
+				user_choose_lable,
+			</if>
+			<if test="user_custom_lable != null and user_custom_lable != ''" >
+				user_custom_lable,
+			</if>
+			<if test="create_time != null and create_time != ''" >
+				create_time,
+			</if>
+			<if test="update_user_id != null and update_user_id != ''" >
+				update_user_id,
+			</if>
+			<if test="update_time != null and update_time != ''" >
+				update_time,
+			</if>
+			<if test="nick_name != null and nick_name != ''" >
+				nick_name,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="id != null and id != ''" >
+				#{id},
+			</if>
+			<if test="open_id != null and open_id != ''" >
+				#{open_id},
+			</if>
+			<if test="user_integral != null and user_integral != ''" >
+				#{user_integral},
+			</if>
+			<if test="user_portrait != null and user_portrait != ''">
+				#{user_portrait},
+			</if>
+			<if test="user_choose_lable != null and user_choose_lable != ''" >
+				#{user_choose_lable},
+			</if>
+			<if test="user_custom_lable != null and user_custom_lable != ''" >
+				#{user_custom_lable},
+			</if>
+			<if test="create_time != null and create_time != ''" >
+				#{create_time},
+			</if>
+			<if test="create_time != null and create_time != ''" >
+				#{create_time},
+			</if>
+			<if test="update_user_id != null and update_user_id != ''" >
+				#{update_user_id},
+			</if>
+			<if test="update_time != null and update_time != ''" >
+				#{update_time},
+			</if>
+			<if test="nick_name != null and nick_name != ''" >
+				#{nick_name},
+			</if>
+		</trim>
+	</insert>
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			id = #{id}
+	</delete>
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update
+		<include refid="tableName"></include>
+		set
+		<trim  suffixOverrides="," >
+			<if test="open_id != null and open_id != ''" >
+				open_id = #{open_id},
+			</if>
+			<if test="user_integral != null and user_integral != ''" >
+				user_integral = #{user_integral},
+			</if>
+			<if test="user_portrait != null and user_portrait != ''" >
+				user_portrait = #{user_portrait},
+			</if>
+			<if test="user_choose_lable != null and user_choose_lable != ''" >
+				user_choose_lable = #{user_choose_lable},
+			</if>
+			<if test="user_custom_lable != null and user_custom_lable != ''" >
+				user_custom_lable = #{user_custom_lable},
+			</if>
+			<if test="create_time != null and create_time != ''" >
+				create_time = #{create_time},
+			</if>
+			<if test="update_user_id != null and update_user_id != ''" >
+				update_user_id = #{update_user_id},
+			</if>
+			<if test="update_time != null and update_time != ''" >
+				update_time = #{update_time},
+			</if>
+			<if test="nick_name != null and nick_name != ''" >
+				nick_name = #{nick_name},
+			</if>
+		</trim>
+		where
+		id=#{id}
+	</update>
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		SELECT umb.user_id,u.id, u.user_portrait,u.nick_name,u.create_time,umb.mobile_brand,umb.mobile_model,umb.mobile_system,umb.mobile_dpr_wide,umb.mobile_dpr_high,umb.screen_wide,
+		umb.screen_high,umb.window_use_width,umb.window_use_high,umb.status_bar_high,umb.wechar_language,umb.wechar_version,umb.client_platform,umb.font_size,umb.client_platform_version,umb.performance_leval
+		FROM user u LEFT JOIN user_mobile_basic umb ON u.id=umb.user_id
+		where 
+			u.id=#{id}
+	</select>
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		SELECT u.id,u.user_portrait,u.nick_name,u.create_time,umb.mobile_brand,umb.mobile_model,umb.mobile_system,umb.mobile_dpr_wide,umb.mobile_dpr_high
+		FROM user u LEFT JOIN user_mobile_basic umb ON u.id=umb.user_id
+		where 1=1
+		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
+			and
+				(
+					u.nick_name LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+				)
+		</if>
+
+		<if test="pd.lastStart != null and pd.lastStart !='' ">
+			and u.create_time > #{pd.lastStart}
+		</if>
+
+		<if test="pd.lastEnd != null and pd.lastEnd !='' ">
+			and   #{pd.lastEnd} > u.create_time
+		</if>
+		order by u.create_time desc
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		SELECT u.id,u.user_portrait,u.nick_name,u.create_time,umb.mobile_brand,umb.mobile_model,umb.mobile_system,umb.mobile_dpr_wide,umb.mobile_dpr_high
+		FROM user u LEFT JOIN user_mobile_basic umb ON u.id=umb.user_id order by u.create_time desc
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			id in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+</mapper>

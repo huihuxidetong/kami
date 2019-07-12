@@ -1,0 +1,6 @@
+.mybutton{
+  border:none;width:460rpx;height:88rpx;line-height:88rpx;background:#d1a44b;font-size:32rpx;color:#fff;border-radius: 2rem;
+}
+.mybutton::after{
+  border:none;
+}

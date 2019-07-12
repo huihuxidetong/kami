@@ -1,0 +1,65 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/mine/mine",
+    "pages/card/card",
+    "pages/game/game",
+    "pages/myLabel/myLabel",
+    "pages/mycard/mycard",
+    "pages/addCard/addCard",
+    "pages/confirmCard/confirmCard",
+    "pages/gameDetail/gameDetail",
+    "pages/Integral/Integral",
+    "pages/relatedCard/relatedCard",
+    "pages/joinGame/joinGame",
+    "pages/reply/reply",
+    "pages/cardDetail/cardDetail",
+    "pages/cardCategory/cardCategory",
+    "pages/bankCardList/bankCardList",
+    "pages/bankList/bankList",
+    "pages/myMessage/myMessage",
+    "pages/myFollow/myFollow",
+    "pages/followList/followList",
+    "pages/applyTips/applyTips"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#959baa",
+    "selectedColor": "#3b445b",
+    "borderStyle": "white",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/icon/home_d.png",
+        "selectedIconPath": "images/icon/home_s.png"
+      },
+      {
+        "pagePath": "pages/card/card",
+        "text": "信用卡",
+        "iconPath": "images/icon/card_d.png",
+        "selectedIconPath": "images/icon/card_s.png"
+      },
+      {
+        "pagePath": "pages/game/game",
+        "text": "活动",
+        "iconPath": "images/icon/game_d.png",
+        "selectedIconPath": "images/icon/game_s.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "images/icon/mine_d.png",
+        "selectedIconPath": "images/icon/mine_s.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

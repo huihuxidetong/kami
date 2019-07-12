@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="CreditCardCostMapper">
+	<resultMap id="BaseResultMap" type="com.card.inteface.entity.CreditCardCost">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="credit_card_id" property="creditCardId" jdbcType="INTEGER" />
+		<result column="cost_type" property="costType" jdbcType="VARCHAR" />
+		<result column="cost_explain" property="costExplain" jdbcType="VARCHAR" />
+		<result column="cost_measures" property="costMeasures" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		id,
+		credit_card_id,
+		cost_type,
+		cost_explain,
+		cost_measures
+	</sql>
+	
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from credit_card_cost
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+		id = #{id,jdbcType=INTEGER}
+		</trim>
+	</select>
+	
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from credit_card_cost
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+		id = #{id,jdbcType=INTEGER}
+		</trim>
+	</delete>
+	
+	<insert id="insertSelective" parameterType="com.card.inteface.entity.CreditCardCost">
+		insert into credit_card_cost
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="null != id">
+				id,
+			</if>
+			<if test="null != creditCardId">
+				credit_card_id,
+			</if>
+			<if test="null != costType">
+				cost_type,
+			</if>
+			<if test="null != costExplain">
+				cost_explain,
+			</if>
+			<if test="null != costMeasures">
+				cost_measures,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="null != id">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="null != creditCardId">
+				#{creditCardId,jdbcType=INTEGER},
+			</if>
+			<if test="null != costType">
+				#{costType,jdbcType=VARCHAR},
+			</if>
+			<if test="null != costExplain">
+				#{costExplain,jdbcType=VARCHAR},
+			</if>
+			<if test="null != costMeasures">
+				#{costMeasures,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="com.card.inteface.entity.CreditCardCost">
+		update credit_card_cost
+		<set>
+			<if test="null != id">
+				id = #{id,jdbcType=INTEGER},
+			</if>
+			<if test="null != creditCardId">
+				credit_card_id = #{creditCardId,jdbcType=INTEGER},
+			</if>
+			<if test="null != costType">
+				cost_type = #{costType,jdbcType=VARCHAR},
+			</if>
+			<if test="null != costExplain">
+				cost_explain = #{costExplain,jdbcType=VARCHAR},
+			</if>
+			<if test="null != costMeasures">
+				cost_measures = #{costMeasures,jdbcType=VARCHAR},
+			</if>
+		</set>
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+		id = #{id,jdbcType=INTEGER}
+		</trim>
+	</update>
+
+	<select id="findCreditCardCostByCreditCardId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from credit_card_cost
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			credit_card_id = #{creditCardId,jdbcType=INTEGER}
+		</trim>
+	</select>
+</mapper>
