@@ -89,7 +89,7 @@
 		image_url
 		from activity_file
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
-			activity_id = #{activityId,jdbcType=INTEGER}
+			activity_id = #{activityId,jdbcType=INTEGER} and status =1
 		</trim>
 	</select>
 </mapper>

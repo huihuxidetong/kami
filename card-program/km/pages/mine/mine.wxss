@@ -10,7 +10,7 @@
 }
 
 .mycontainer1{
- height: 120vh; 
+ height: 100vh; 
  background:#f9fbfe;
  padding:20rpx 30rpx
 }

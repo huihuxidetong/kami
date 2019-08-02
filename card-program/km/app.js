@@ -2,7 +2,7 @@
 App({
   globalData: {
     //portDomain: 'http://10.7.24.220:8080/api/',
-    portDomain: 'https://api.kamifinance.com/',
+    portDomain: 'https://api2.kamifinance.com/',
     //portDomain: 'http://192.168.1.85:8086/',
     imgDomain: 'https://file.kamifinance.com/file/down/',
     //imgDomain: 'http://10.7.24.220:8080/file/file/down/',

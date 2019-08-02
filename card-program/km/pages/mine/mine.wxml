@@ -10,7 +10,7 @@
       <image style='width:100rpx;height:100rpx;border-radius:50%;overflow:hidden;' src='{{myinfo.userPortrait}}'></image>
     </view>
     <!-- 我的信用卡 -->
-    <view style='display:flex;flex-direction:row;justify-content:space-between;align-items:center;margin-bottom:50rpx' bindtap='gomyCard'>
+    <!-- <view style='display:flex;flex-direction:row;justify-content:space-between;align-items:center;margin-bottom:50rpx' bindtap='gomyCard'>
       <image style='width:36rpx;height:36rpx;margin-right:20rpx' src='./../../images/icon/my_card.png'></image>
       <text class='cardtitle' style='flex:1'>我的信用卡</text>
       <view style='display:flex;flex-direction:row;align-items:center;'>
@@ -18,7 +18,7 @@
         <image src="../../images/icon/come_right.png" style="width:12rpx;height:22rpx;margin-left:8rpx;"></image>
       </view>
     
-    </view>
+    </view> -->
  <!-- 我的关注 -->
     <view style='display:flex;flex-direction:row;justify-content:space-between;align-items:center;margin-bottom:50rpx' bindtap='gomyFollow'>
       <image style='width:36rpx;height:36rpx;margin-right:20rpx' src='./../../images/icon/my_follow.png'></image>
@@ -48,7 +48,7 @@
     </view>
   </view>
   <!-- 底部信用卡信息 -->
-  <view class="bottomview">
+  <!-- <view class="bottomview">
     <view style='font-size:26rpx;color:#959baa;margin:30rpx 0 30rpx 0;text-align:center'>
       <text style='color:#959baa;'>申请信用卡</text>
     </view>
@@ -58,7 +58,7 @@
     <view style='font-size:26rpx;color:#959baa;margin:30rpx 0 0 0;text-align:center'>
       <text style='color:#959baa;'>请关注“爱领卡”公众号</text>
     </view>
-  </view>
+  </view> -->
 </view>
 <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" hidden="{{authorized}}"></view>
 	<view class="modal-dialog" hidden="{{authorized}}">

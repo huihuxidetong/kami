@@ -9,24 +9,7 @@
       </swiper-item>
     </block>
   </swiper>
-  <!-- 推荐签约产品 -->
-  <view class="index-hot" wx:if="{{cardlist!=null&&cardlist.length>0}}">
-    <text class="hot-title">推荐信用卡</text>
-    <view style='display:flex;align-items:center;' bindtap='goCardList'>
-      <text bindtap='goMoreProduct' style=" font-size:26rpx;color:#959baa">更多 </text>
-      <image src="../../images/icon/come_right.png" style="width:12rpx;height:22rpx;margin-left:8rpx"></image>
-    </view>
-  </view>
-  <view >
-    <view class="cardlist" wx:for="{{cardlist}}" wx:for-item="item" wx:key="*this" bindtap='goCardDetail' data-id='{{item.id}}'>
-      <image class="cardimage" src='{{imgDomain+item.cardLogo}}'></image>
-      <view class="carddetail">
-        <text class="cardtitle gamemargin">{{item.bankName}}{{item.cardName}}</text>
-        <text class="carddes cardmargin">{{item.cardFeature}}</text>
-        <text class="carddes">已有<text style='color:#ff5600;'>{{item.cardLookNumber}}</text>人查看</text>   
-      </view>
-    </view>
-  </view>
+ 
  <!-- 推荐活动 -->
  <view class="index-hot" wx:if="{{gamelist!=null&&gamelist.length>0}}">
     <text class="hot-title">推荐活动</text>
@@ -44,7 +27,5 @@
   </view>
    <!-- <view style="height:100rpx;width: 100%;background-color:#efefef;font-size:24rpx;color:#959baa;text-align:center;">
     -->
-     <view style='line-height:100rpx;font-size:25rpx;color:#959baa;background-color:#efefef;text-align:center'>
-      <text>爱领卡官方小程序</text>
-    </view>
+    
 
